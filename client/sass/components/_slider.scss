@@ -70,6 +70,7 @@
     right: 0;
     bottom: 0;
     margin: 0;
+    z-index: 1;
 
     .indicator-item {
       display: inline-block;
@@ -88,5 +89,16 @@
       }
     }
   }
+
+  .gradient {
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('http://www.skrenta.com/images/stackoverflow.jpg') no-repeat;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(59%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.65))), url('http://www.skrenta.com/images/stackoverflow.jpg') no-repeat;
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('http://www.skrenta.com/images/stackoverflow.jpg') no-repeat;
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('http://www.skrenta.com/images/stackoverflow.jpg') no-repeat;
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('http://www.skrenta.com/images/stackoverflow.jpg') no-repeat;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('http://www.skrenta.com/images/stackoverflow.jpg') no-repeat;
+  height: 494px;
+  width: 620px;
+}
 
 }
