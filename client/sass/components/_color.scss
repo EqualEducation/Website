@@ -20,6 +20,19 @@ $materialize-red: (
   "darken-4":   #8b1014,
 );
 
+$ee-yellow: (
+"lighten-5":  #FFCC00,
+"lighten-4":  #FFCC00,
+"lighten-3":  #FFCC00,
+"lighten-2":  #FFCC00,
+"lighten-1":  #FFCC00,
+"base":       #FFCC00,
+"darken-1":   #FFCC00,
+"darken-2":   #FFCC00,
+"darken-3":   #FFCC00,
+"darken-4":   #FFCC00,
+);
+
 $red: (
   "lighten-5":  #FFEBEE,
   "lighten-4":  #FFCDD2,
@@ -339,6 +352,7 @@ $shades: (
 
 $colors: (
   "materialize-red": $materialize-red,
+  "ee-yellow": $ee-yellow,
   "red": $red,
   "pink": $pink,
   "purple": $purple,
@@ -377,7 +391,7 @@ $colors: (
     @else {
       .#{$color_name}.#{$color_type} {
         background-color: $color_value !important;
-      }      
+      }
       .#{$color_name}-text.text-#{$color_type} {
         color: $color_value !important;
       }
@@ -409,4 +423,3 @@ $colors: (
   @warn "Unknown `#{name}` in $colors.";
   @return null;
 }
-
