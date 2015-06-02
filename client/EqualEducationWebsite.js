@@ -2,6 +2,11 @@ if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault('counter', 0);
 
+
+  Template.hello.onRendered(function() {
+    $('.slider').slider({full_width: true});
+  });
+
   Template.hello.helpers({
     counter: function () {
       return Session.get('counter');
