@@ -3,21 +3,31 @@
     {{#if currentUser}}
         {{> dashboard}}
     {{else}}
-        {{> register}}
+        <!-- {{> register}} -->
         {{> login}}
     {{/if}}
   </div>
 </template>
 
 <template name="dashboard">
-    <p>You're logged in.</p>
-    <p><a href="#" class="logout">Logout</a></p>
+
+    <div class="row accounts_card">
+        <div class="blur"></div>
+        <div class="do_not_blur">
+          <div class="card" style="background-color:transparent; margin: 0;">
+            <div class="card-content black-text">
+              <span class="card-title black-text">Staff Log In</span>
+              <p>You're logged in.</p>
+              <p><a href="#" class="logout">Logout</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
 </template>
 
 <template name="register">
-  <!-- <div class="register"> -->
-    <div class="row register_card">
-        <!-- <div class="col s12 m6"> -->
+    <div class="row accounts_card">
         <div class="blur"></div>
         <div class="do_not_blur">
           <div class="card" style="background-color:transparent; margin: 0;">
@@ -33,20 +43,42 @@
                   <input id="password" type="password" class="validate" name="registerPassword">
                   <label for="password">Password</label>
                 </div>
-
                 <input class="btn waves-effect waves-light" type="submit" value="Register">
-
               </form>
             </div>
-
-            <!-- <div class="card-action"> -->
-            <!-- </div> -->
           </div>
         </div>
       </div>
-  <!-- </div> -->
 </template>
 
 <template name="login">
-
+  <div class="row accounts_card">
+      <!-- <div class="blur"></div> -->
+      <!-- <div class="do_not_blur"> -->
+        <div class="card" style="background-color:transparent; margin: 0px;">
+          <div class="card-content black-text">
+            <span class="card-title black-text">Staff Log In</span>
+            <p>Please use your Equal Education email address to log in</p>
+            <form>
+              <div class="input-field col s12">
+                <input type="email" id="login-email" class="validate" />
+                <label for="email">Email</label>
+              </div>
+              <div class="input-field col s12">
+                <input type="password" id="login-password" class="validate" />
+                <label for="password">Password</label>
+              </div>
+              <div class="col s6">
+                <input type="submit" class="btn waves-effect waves-light" id="login-button" value="Sign in" />
+              </div>
+              <div class="col s6">
+                <a href="#">Register as a new user</a>
+              </div>
+              <div class="input-field col s12">
+            </div>
+            </form>
+          </div>
+        <!-- </div> -->
+      </div>
+    </div>
 </template>
