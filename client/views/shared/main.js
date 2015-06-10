@@ -3,7 +3,7 @@ if (Meteor.isClient) {
   Session.setDefault('counter', 0);
 
 
-  Template.hello.onRendered(function() {
+  Template.header.onRendered(function() {
     $('.slider').slider({full_width: true});
   });
 
