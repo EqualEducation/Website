@@ -1,0 +1,24 @@
+<template name="accounts">
+  <div class="background">
+    {{#if currentUser}}
+        {{> dashboard}}
+    {{else}}
+        {{> register}}
+        {{> login}}
+    {{/if}}
+  </div>
+</template>
+
+<template name="dashboard">
+    <p>You're logged in.</p>
+    <p><a href="#" class="logout">Logout</a></p>
+</template>
+
+<template name="register">
+  <div class="register">
+  </div>
+</template>
+
+<template name="login">
+
+</template>

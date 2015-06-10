@@ -2,7 +2,7 @@
 $primary-color: color("ee-yellow", "lighten-2") !default;
 $primary-color-light: lighten($primary-color, 15%) !default;
 $primary-color-dark: darken($primary-color, 15%) !default;
-$nav-bar-color: rgba(white, .90 ) !default;
+$nav-bar-color: rgba(white, .50 ) !default;
 $secondary-color: color("teal", "lighten-1") !default;
 $success-color: color("green", "base") !default;
 $error-color: color("red", "base") !default;
