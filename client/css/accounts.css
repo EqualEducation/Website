@@ -3,8 +3,7 @@
 .background {
   margin: 0px;
   background-image:url(classrooms.png);
-  height: 70;
-  min-height: 100px;
+  height: 70vh;
   width: 100%;
   padding: 10%;
   background-size: cover;
