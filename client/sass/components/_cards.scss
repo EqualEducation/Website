@@ -11,7 +11,8 @@
 .card {
   position: relative;
   overflow: hidden;
-  margin: $element-top-margin 0 $element-bottom-margin 0;
+  max-height: 400px;
+  margin: auto;//$element-top-margin 0 $element-bottom-margin 0;
   background-color: $card-bg-color;
   border-radius: 2px;
   @extend .z-depth-1;

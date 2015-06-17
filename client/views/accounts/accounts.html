@@ -1,20 +1,20 @@
 <template name="accounts">
   <div class="background">
+      <div class="accounts">
     {{#if currentUser}}
         {{> dashboard}}
     {{else}}
-        <!-- {{> register}} -->
         {{> login}}
     {{/if}}
   </div>
+</div>
 </template>
 
 <template name="dashboard">
-
     <div class="row accounts_card">
         <div class="blur"></div>
         <div class="do_not_blur">
-          <div class="card" style="background-color:transparent; margin: 0;">
+          <div class="card" style="background-color:transparent; margin: 0; vertical-align: middle; ">
             <div class="card-content black-text">
               <span class="card-title black-text">Staff Log In</span>
               <p>You're logged in.</p>
@@ -23,7 +23,35 @@
           </div>
         </div>
       </div>
+</template>
 
+<template name="login">
+      <!-- <div class="blur"></div> -->
+      <!-- <div class="do_not_blur"> -->
+       <div class="card">
+          <div class="card-content black-text">
+            <span class="card-title black-text">Staff Log In</span>
+            <p>Please use your Equal Education email address to log in</p>
+            <form id="login-form" action="action">
+              <div class="input-field col s12">
+                <input type="email" id="login-email" class="validate" />
+                <label for="email">Email</label>
+              </div>
+              <div class="input-field col s12">
+                <input type="password" id="login-password" class="validate" />
+                <label for="password">Password</label>
+              </div>
+              <div class="col s6">
+                <input type="submit" class="waves-effect waves-light btn" id="login-button" value="Sign in" />
+              </div>
+              <div class="col s6">
+                <a href="#">Register as a new user</a>
+              </div>
+              <div class="input-field col s12">
+            </div>
+            </form>
+          </div>
+        </div>
 </template>
 
 <template name="register">
@@ -49,36 +77,4 @@
           </div>
         </div>
       </div>
-</template>
-
-<template name="login">
-  <div class="row accounts_card">
-      <!-- <div class="blur"></div> -->
-      <!-- <div class="do_not_blur"> -->
-        <div class="card" style="background-color:transparent; margin: 0px;">
-          <div class="card-content black-text">
-            <span class="card-title black-text">Staff Log In</span>
-            <p>Please use your Equal Education email address to log in</p>
-            <form>
-              <div class="input-field col s12">
-                <input type="email" id="login-email" class="validate" />
-                <label for="email">Email</label>
-              </div>
-              <div class="input-field col s12">
-                <input type="password" id="login-password" class="validate" />
-                <label for="password">Password</label>
-              </div>
-              <div class="col s6">
-                <input type="submit" class="btn waves-effect waves-light" id="login-button" value="Sign in" />
-              </div>
-              <div class="col s6">
-                <a href="#">Register as a new user</a>
-              </div>
-              <div class="input-field col s12">
-            </div>
-            </form>
-          </div>
-        <!-- </div> -->
-      </div>
-    </div>
 </template>

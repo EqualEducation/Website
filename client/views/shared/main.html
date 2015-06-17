@@ -35,7 +35,13 @@
         <li><a href="#">Tools</a></li>
         <!-- <li><a href="#">Join us</a></li> -->
         <li><a href="#">Campaigns</a></li>
-        <li><a href="/accounts"><i class="mdi-action-account-circle"></i></a></li>
+        {{#if currentUser}}
+          <li><a href="/accounts"><i class="mdi-action-account-circle"></i></a></li>
+        {{else}}
+            <!-- {{> register}} -->
+            <li><a href="/accounts">Sign in</a></li>
+        {{/if}}
+
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
