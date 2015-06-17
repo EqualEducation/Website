@@ -1,5 +1,5 @@
 <template name="accounts">
-  <div class="background">
+  <div class="background accounts_background">
       <div class="accounts">
     {{#if currentUser}}
         {{> dashboard}}
@@ -17,24 +17,9 @@
       <p><a href="#" class="logout">Logout</a></p>
     </div>
    </div>
-
-    <!-- <div class="row accounts_card">
-        <div class="blur"></div>
-        <div class="do_not_blur">
-          <div class="card" style="background-color:transparent; margin: 0; vertical-align: middle; ">
-            <div class="card-content black-text">
-              <span class="card-title black-text">Staff Log In</span>
-              <p>You're logged in.</p>
-              <p><a href="#" class="logout">Logout</a></p>
-            </div>
-          </div>
-        </div>
-      </div> -->
 </template>
 
 <template name="login">
-      <!-- <div class="blur"></div> -->
-      <!-- <div class="do_not_blur"> -->
        <div class="card">
           <div class="card-content black-text">
             <span class="card-title black-text">Staff Log In</span>
@@ -62,8 +47,12 @@
 </template>
 
 <template name="register">
+
   <div class="background">
     <div class="accounts">
+      {{#if currentUser}}
+          {{> dashboard}}
+      {{else}}
       <div class="card">
           <div class="card-content black-text">
               <span class="card-title black-text">Staff Register</span>
@@ -84,10 +73,12 @@
                   <a href="/accounts">Login as an existing user</a>
                 </div>
                 <div class="input-field col s12"></div>
-
               </form>
             </div>
           </div>
+          {{/if}}
+
         </div>
   </div>
+
 </template>

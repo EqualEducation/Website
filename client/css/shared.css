@@ -1,0 +1,18 @@
+.frosted {
+  /*position: relative;
+  overflow: hidden;
+  max-height: 400px;
+  margin: auto;//$element-top-margin 0 $element-bottom-margin 0;*/
+  background-color: rgba(255,255,255, .7);
+  /*border-radius: 2px;
+  @extend .z-depth-1;*/
+
+}
+
+
+.background {
+  margin: 0px;
+  width: 100%;
+  padding: 20px;
+  background-size: cover;
+}

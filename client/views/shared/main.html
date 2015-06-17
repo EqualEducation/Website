@@ -22,7 +22,6 @@
   <div id="nav_container">
     <div id="nav_bar">{{> navbar }}</div>
     {{> flashMessages}}
-
   </div>
 </template>
 
@@ -38,6 +37,7 @@
         <!-- <li><a href="#">Join us</a></li> -->
         <li><a href="#">Campaigns</a></li>
         {{#if currentUser}}
+          <li><a href="/staff">Staff</a></li>
           <li><a href="/accounts"><i class="mdi-action-account-circle"></i></a></li>
         {{else}}
             <!-- {{> register}} -->

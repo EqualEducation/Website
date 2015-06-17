@@ -70,7 +70,6 @@ Template.login.events({
       }
       });
          return false;
-
     }
   });
 

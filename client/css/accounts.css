@@ -1,12 +1,9 @@
 
 
-.background {
-  margin: 0px;
+.background.accounts_background {
+  /*height: 70vh;*/
   background-image:url(classrooms.png);
-  height: 70vh;
-  width: 100%;
   padding: 10%;
-  background-size: cover;
 }
 
 .accounts {
