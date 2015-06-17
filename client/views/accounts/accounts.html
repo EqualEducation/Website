@@ -45,7 +45,7 @@
                 <input type="submit" class="waves-effect waves-light btn" id="login-button" value="Sign in" />
               </div>
               <div class="col s6">
-                <a href="#">Register as a new user</a>
+                <a href="/accounts/register">Register as a new user</a>
               </div>
               <div class="input-field col s12">
             </div>
@@ -55,26 +55,32 @@
 </template>
 
 <template name="register">
-    <div class="row accounts_card">
-        <div class="blur"></div>
-        <div class="do_not_blur">
-          <div class="card" style="background-color:transparent; margin: 0;">
-            <div class="card-content black-text">
-              <span class="card-title black-text">Staff Log In</span>
-              <p>Please use your Equal Education email address to log in</p>
+  <div class="background">
+    <div class="accounts">
+      <div class="card">
+          <div class="card-content black-text">
+              <span class="card-title black-text">Staff Register</span>
+              <p>Please use your Equal Education email address to register as a new user</p>
               <form>
                 <div class="input-field col s12">
-                  <input id="email" type="email" class="validate" name="registerEmail">
-                  <label for="email">Email</label>
+                  <input id="register-email" type="email" class="validate" name="registerEmail">
+                  <label for="register-email">Email</label>
                 </div>
                 <div class="input-field col s12">
-                  <input id="password" type="password" class="validate" name="registerPassword">
-                  <label for="password">Password</label>
+                  <input id="register-password" type="password" class="validate" name="registerPassword">
+                  <label for="register-password">Password</label>
                 </div>
-                <input class="btn waves-effect waves-light" type="submit" value="Register">
+                <div class="col s6">
+                  <input class="btn waves-effect waves-light" type="submit" value="Register">
+                </div>
+                <div class="col s6">
+                  <a href="/accounts">Login as an existing user</a>
+                </div>
+                <div class="input-field col s12"></div>
+
               </form>
             </div>
           </div>
         </div>
-      </div>
+  </div>
 </template>
