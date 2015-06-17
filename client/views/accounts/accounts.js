@@ -36,6 +36,7 @@ Template.register.events({
                 FlashMessages.sendError(err.reason);
               } else {
                 FlashMessages.sendSuccess("Successfully logged in");
+                Router.go("/staff");
               }
 
             });
@@ -67,6 +68,7 @@ Template.login.events({
         }
         else {
           FlashMessages.sendSuccess("Successfully logged in");
+          Router.go("/staff");
       }
       });
          return false;
