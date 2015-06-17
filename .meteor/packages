@@ -12,3 +12,4 @@ fourseven:scss
 iron:router
 accounts-password
 accounts-base
+mrt:flash-messages

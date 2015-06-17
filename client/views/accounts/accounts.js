@@ -1,16 +1,52 @@
-Template.register.events({
-    'submit form': function(event) {
-        event.preventDefault();
-        console.log(event);
 
-        var emailVar = event.target.registerEmail.value;
-        var passwordVar = event.target.registerPassword.value;
-        Accounts.createUser({
-            email: emailVar,
-            password: passwordVar
-        });
+var trimInput = function(val) {
+  return val.replace(/^\s*|\s*$/g, "");
+}
+
+
+  var isValidPassword = function(val, field) {
+      if (val.length = 6) {
+        return true;
+      } else {
+        // Session.set('displayMessage', 'Error &amp; Too short.')
+        return false;
+      }
     }
-});
+
+
+Template.register.events({
+  'submit #register-form' : function(e, t){
+      e.preventDefault();
+      var email = t.find('#register-email').value
+        , password = t.find('#register-password').value;
+
+        email = trimInput(email);
+        password = trimInput(password);
+
+        // Trim and validate the input
+
+        if (isValidPassword(password)) // &amp;&amp; other validations)
+        {
+          Accounts.createUser({
+            email: email,
+            password : password},
+            function(err){
+              if (err) {
+                console.log(err)
+                FlashMessages.sendError(err.reason);
+              } else {
+                FlashMessages.sendSuccess("Successfully logged in");
+              }
+
+            });
+        } else {
+          FlashMessages.sendError("Error. Password must be at least 6 characters.");
+        }
+
+
+      return false;
+    }
+  });
 
 Template.login.events({
 
@@ -27,13 +63,10 @@ Template.login.events({
         Meteor.loginWithPassword(email, password, function(err){
         if (err){
           console.log(err)
-          // The user might not have been found, or their passwword
-          // could be incorrect. Inform the user that their
-          // login attempt has failed.
+          FlashMessages.sendError(err.reason);
         }
         else {
-          console.log("logged in")
-          // The user has been logged in.
+          FlashMessages.sendSuccess("Successfully logged in");
       }
       });
          return false;
