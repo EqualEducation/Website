@@ -9,7 +9,9 @@
       <br><br> -->
 
       <div class="contacts section">
-        <table class="responsive-table hoverable">
+        {{> searchBox }}
+        {{> searchResult}}
+                <!-- <table class="responsive-table hoverable">
           <thead>
             <tr>
                 <th data-field="id">City</th>
@@ -27,10 +29,35 @@
             </tr>
             {{/each}}
           </tbody>
-        </table>
+        </table> -->
       </div>
     </div>
 </div>
 
 
+</template>
+
+<template name="searchBox">
+  <input type="text" id="search-box" placeholder="search packages here" />
+</template>
+
+<template name="searchResult">
+  <div id='search-result'>
+    <div id="search-meta">
+      {{#if isLoading}}
+        searching ...
+      {{/if}}
+    </div>
+
+    {{#each getPackages}}
+    <div class="package">
+      <h4 class="name">
+      {{{city}}}
+      </h4>
+      <div class="description">
+        {{{value}}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
 </template>
