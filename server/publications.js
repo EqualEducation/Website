@@ -5,8 +5,17 @@ SearchSource.defineSource('contacts', function(searchText, options) {
   if(searchText) {
     var regExp = buildRegExp(searchText);
     var selector = {$or: [
-      {title: regExp},
-      {city: regExp}
+      {city: regExp},
+      {contact_type: regExp},
+      {contact_sub_type: regExp},
+      {member: regExp},
+      {first_name: regExp},
+      {last_name: regExp},
+      {email: regExp},
+      {cellphone: regExp},
+      {grade: regExp},
+      {youth_group: regExp},
+      {year_group: regExp}
     ]};
 
     return Contacts.find(selector, options).fetch();
