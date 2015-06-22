@@ -57,16 +57,20 @@ Template.login.events({
       var email = t.find('#login-email').value
         , password = t.find('#login-password').value;
 
-        // Trim and validate your fields here....
+        // Trim
+        email = trimInput(email);
+        password = trimInput(password);
+
+        console.log("Logging in " +  email)
 
         // If validation passes, supply the appropriate fields to the
-        // Meteor.loginWithPassword() function.
         Meteor.loginWithPassword(email, password, function(err){
         if (err){
           console.log(err)
           FlashMessages.sendError(err.reason);
         }
         else {
+          console.log("User logged in");
           FlashMessages.sendSuccess("Successfully logged in");
           Router.go("/staff");
       }

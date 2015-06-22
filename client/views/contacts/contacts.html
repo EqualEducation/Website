@@ -3,13 +3,31 @@
 
     <div class="container">
       <h1>Contacts</h1>
-      <div class="section">
+      <!-- <div class="section">
 
       </div>
-      <br><br>
+      <br><br> -->
 
-      <div class="section">
+      <div class="contacts section">
+        <table class="responsive-table hoverable">
+          <thead>
+            <tr>
+                <th data-field="id">City</th>
+                <th data-field="name">Contact Type</th>
+                <th data-field="price">Contact Subtype</th>
+            </tr>
+          </thead>
 
+          <tbody>
+            {{#each this}}
+            <tr>
+              <td>{{this.city}}</td>
+              <td>{{this.contact_type}}</td>
+              <td>{{this.country}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
       </div>
     </div>
 </div>
