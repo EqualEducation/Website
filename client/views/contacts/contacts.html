@@ -1,7 +1,7 @@
 <template name="contacts">
   <div class="background" style="background-image:url(staff.jpg)">
 
-    <div class="container">
+    <!-- <div class="container"> -->
       <h1>Contacts</h1>
       <!-- <div class="section">
 
@@ -11,34 +11,16 @@
       <div class="contacts section">
         {{> searchBox }}
         {{> searchResult}}
-                <!-- <table class="responsive-table hoverable">
-          <thead>
-            <tr>
-                <th data-field="id">City</th>
-                <th data-field="name">Contact Type</th>
-                <th data-field="price">Contact Subtype</th>
-            </tr>
-          </thead>
 
-          <tbody>
-            {{#each this}}
-            <tr>
-              <td>{{this.city}}</td>
-              <td>{{this.contact_type}}</td>
-              <td>{{this.country}}</td>
-            </tr>
-            {{/each}}
-          </tbody>
-        </table> -->
       </div>
-    </div>
+    <!-- </div> -->
 </div>
 
 
 </template>
 
 <template name="searchBox">
-  <input type="text" id="search-box" placeholder="search packages here" />
+  <input type="text" id="search-box" placeholder="Search contacts here" />
 </template>
 
 <template name="searchResult">
@@ -49,15 +31,50 @@
       {{/if}}
     </div>
 
-    {{#each getPackages}}
-    <div class="package">
-      <h4 class="name">
-      {{{city}}}
-      </h4>
-      <div class="description">
-        {{{value}}}
-      </div>
-    </div>
-    {{/each}}
+    <table class="responsive-table hoverable striped">
+<thead>
+<tr>
+    <th data-field="id">City</th>
+    <th data-field="name">Contact Type</th>
+    <th data-field="price">Contact Subtype</th>
+    <th data-field="price">Member</th>
+    <th data-field="price">First Name</th>
+    <th data-field="price">Last Name</th>
+    <th data-field="price">School</th>
+    <th data-field="price">Email</th>
+    <th data-field="price">Cellphone</th>
+    <th data-field="price">Landline</th>
+    <th data-field="price">Grade</th>
+    <th data-field="price">Youth Group</th>
+    <th data-field="price">Year Group</th>
+    <th data-field="price">Preferred Language</th>
+    <th data-field="price">Delete</th>
+
+</tr>
+</thead>
+
+<tbody>
+{{#each getContacts}}
+<tr>
+  <td>{{this.city}}</td>
+  <td>{{this.contact_type}}</td>
+  <td>{{this.contact_sub_type}}</td>
+  <td>{{this.member}}</td>
+  <td>{{this.first_name}}</td>
+  <td>{{this.last_name}}</td>
+  <td>{{this.school}}</td>
+  <td>{{this.email}}</td>
+  <td>{{this.cellphone}}</td>
+  <td>{{this.phone}}</td>
+  <td>{{this.grade}}</td>
+  <td>{{this.youth_group}}</td>
+  <td>{{this.year_group}}</td>
+  <td>{{this.preferred_language}}</td>
+  <td><i class="contacts mdi-action-delete"></i></td>
+
+</tr>
+{{/each}}
+</tbody>
+</table>
   </div>
 </template>

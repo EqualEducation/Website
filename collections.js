@@ -1,5 +1,5 @@
-Packages = new Mongo.Collection('contacts');
+Contacts = new Mongo.Collection('contacts');
 
 if(Meteor.isServer) {
-  Packages._ensureIndex({city: 1, title: 1});
+  Contacts._ensureIndex({city: 1, title: 1});
 }

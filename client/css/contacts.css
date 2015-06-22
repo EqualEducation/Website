@@ -2,6 +2,9 @@
   background-color: rgba(255,255,255,0.7)
 }
 
+.contacts i {
+  font-size: 30px;
+}
 /*.hoverable:hover{
   background-color: rgba(38,166,154, .5);
 }*/

@@ -9,11 +9,11 @@ var options = {
 };
 var fields = ['value', 'title'];
 
-PackageSearch = new SearchSource('messages', fields, options);
+ContactsSearch = new SearchSource('contacts', fields, options);
 
 Template.searchResult.helpers({
-  getPackages: function() {
-    return PackageSearch.getData({
+  getContacts: function() {
+    return ContactsSearch.getData({
       transform: function(matchText, regExp) {
         return matchText.replace(regExp, "<b>$&</b>")
       },
@@ -22,17 +22,17 @@ Template.searchResult.helpers({
   },
 
   isLoading: function() {
-    return PackageSearch.getStatus().loading;
+    return ContactsSearch.getStatus().loading;
   }
 });
 
 Template.searchResult.rendered = function() {
-  PackageSearch.search('');
+  ContactsSearch.search('');
 };
 
 Template.searchBox.events({
   "keyup #search-box": _.throttle(function(e) {
     var text = $(e.target).val().trim();
-    PackageSearch.search(text);
+    ContactsSearch.search(text);
   }, 200)
 });

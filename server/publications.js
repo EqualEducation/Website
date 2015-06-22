@@ -1,6 +1,6 @@
-SearchSource.defineSource('messages', function(searchText, options) {
+SearchSource.defineSource('contacts', function(searchText, options) {
   console.log(searchText)
-  var options = {sort: {isoScore: -1}, limit: 1000};
+  var options = {sort: {isoScore: -1}, limit: 20};
 
   if(searchText) {
     var regExp = buildRegExp(searchText);
@@ -9,9 +9,9 @@ SearchSource.defineSource('messages', function(searchText, options) {
       {city: regExp}
     ]};
 
-    return Packages.find(selector, options).fetch();
+    return Contacts.find(selector, options).fetch();
   } else {
-    return Packages.find({}, options).fetch();
+    return Contacts.find({}, options).fetch();
   }
 });
 
