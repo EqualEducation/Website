@@ -10,20 +10,17 @@
 </template>
 
 <template name="searchBox">
-  <div class="row">
+  <div class="searchBox">
     <ul class="contacts collapsible" data-collapsible="accordion">
-    <li>
-      <div class="contacts collapsible-header active">Quick Search</div>
-      <div class="contacts collapsible-body"><div class="quick_search"><input type="text" id="search-box" placeholder="Search contacts here" /></div></div>
-    </li>
-    <li>
-      <div class="contacts collapsible-header">Advanced Search</div>
-      <div class="contacts collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-    </li>
-  </ul>
-
-    <!--
-    <div class="col s6"><button class="btn primary-color">Advanced Search</button></div> -->
+      <li>
+        <div class="contacts collapsible-header active">Quick Search</div>
+        <div class="contacts collapsible-body"><div class="quick_search"><input type="text" id="search-box" placeholder="Search contacts here" /></div></div>
+      </li>
+      <li>
+        <div class="contacts collapsible-header">Advanced Search</div>
+        <div class="contacts collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -53,6 +50,7 @@
           <th data-field="price">Year Group</th>
           <!-- <th data-field="price">Preferred Language</th> -->
           <th data-field="price">Delete</th>
+          <th><button class="btn">Edit Fields</button></th>
         </tr>
       </thead>
       <tbody>
@@ -73,6 +71,7 @@
           <td>{{this.year_group}}</td>
           <!-- <td>{{this.preferred_language}}</td> -->
           <td><i class="contacts mdi-action-delete"></i></td>
+          <td></td>
         </tr>
       {{/each}}
       </tbody>
@@ -102,7 +101,6 @@
      <div class="modal-footer">
        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Add</a>
        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
-
      </div>
    </div>
 </template>

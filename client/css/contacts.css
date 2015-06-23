@@ -14,13 +14,16 @@
   background-color: transparent;
   color: black;
 }
+
 .contacts.collapsible-body {
+  /*background-color: teal;*/
 }
 
 .contacts.collapsible-header.active {
-  color: white;
+  /*color: white;*/
+  font-size: 30px;
   border: none;
-  background-color: teal;
+  /*background-color: teal;*/
 }
 
 .contacts.collapsible-header:hover {
@@ -30,6 +33,11 @@
 .quick_search {
   padding-left: 30px;
   width: 50%;
+}
+
+.searchBox {
+  /*background-color: rgba(38,166,154, .5);*/
+  /*border-radius: 2px;*/
 }
 
 /*.contacts.collapsible-header.active button {
