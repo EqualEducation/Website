@@ -1,6 +1,11 @@
-Template.contacts.onRendered(function() {
-  console.log(this.data);
+Template.add_contact.onRendered(function() {
+  $('.modal-trigger').leanModal();
+});
 
+Template.searchBox.onRendered(function() {
+  $('.collapsible').collapsible({
+     accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+   });
 });
 
 var options = {
