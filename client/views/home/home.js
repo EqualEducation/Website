@@ -4,7 +4,7 @@ Template.home.onRendered(function() {
 
 Template.home.helpers({
   articles: function () {
-    var articles = Articles.find().fetch()
+    var articles = Content.find().fetch()
     console.log("Start of articles");
     console.log(articles);
     console.log("End of articles");

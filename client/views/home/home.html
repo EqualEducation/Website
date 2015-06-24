@@ -34,12 +34,12 @@
 </template>
 
 <template name="article">
-  <h1>{{this.title}}</h1>
+  <h1>{{this.content_type}}</h1>
   <h2>{{getDateFromTimeStamp this.start_date}}</h2>
   <p>{{this.blurb}}</p>
-  <br />
-
-
+  <p>{{this.mainpic}}</p>
+  <img src="http://equaleducation.org.za{{this.mainpic}}">
+  <br/>
 </template>
 
 

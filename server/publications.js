@@ -37,5 +37,16 @@ function buildRegExp(searchText) {
 }
 
 Meteor.publish("published_articles", function () {
-  return Articles.find({}, {sort: {start_date: -1}, limit: 10});
+  return Content.find(
+    //query predicate (where clause)
+    {
+      content_type : "article",
+      mainpic: { $exists: true, $ne : ""}
+    },
+    //filter object
+    {
+      sort: {start_date: -1},
+      limit: 10
+
+    });
 });
