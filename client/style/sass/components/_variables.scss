@@ -2,7 +2,7 @@
 $primary-color: color("ee-yellow", "lighten-2") !default;
 $primary-color-light: lighten($primary-color, 15%) !default;
 $primary-color-dark: darken($primary-color, 15%) !default;
-$nav-bar-color: rgba(white, .50 ) !default;
+
 $secondary-color: color("teal", "lighten-1") !default;
 $success-color: color("green", "base") !default;
 $error-color: color("red", "base") !default;
@@ -16,24 +16,27 @@ $button-bg-color-disabled: #DFDFDF !default;
 $button-color: $secondary-color !default;
 $button-color-disabled: #9F9F9F !default;
 $button-color-flat: #343434 !default;
-$button-color-raised: #FFF !default;
+$button-color-raised: #fff !default;
 $button-floating-size: 37px !default;
 $button-height: 36px !default;
 $button-font-size-shared: 1.3rem !default;
+$button-large-icon-font-size: 1.6rem !default;
 $button-line-height: 36px !default;
-
 
 /*** Cards ***/
 $card-padding: 20px !default;
-$card-bg-color: rgba(255,255,255, .9) !default;
+$card-bg-color: #fff !default;
+$card-link-color: color("orange", "accent-2") !default;
+$card-link-color-light: lighten($card-link-color, 20%) !default;
 
 /*** Collapsible ***/
 $collapsible-height: 3rem !default;
 $collapsible-header-color: #fff !default;
 $collapsible-border-color: #ddd !default;
 
-
 /*** Dropdown ***/
+$dropdown-bg-color: #fff !default;
+$dropdown-hover-bg-color: #eee !default;
 $dropdown-color: $secondary-color !default;
 
 /*** Fonts ***/
@@ -43,13 +46,13 @@ $icons-font-path: "../font/material-design-icons/" !default;
 /*** Forms ***/
 // Text Inputs + Textarea
 $input-border-color: color("grey", "base") !default;
+$input-bg-color: #fff !default;
 $input-error-color: $error-color !default;
 $input-success-color: $success-color !default;
 $input-focus-color: $secondary-color !default;
 $label-font-size: .8rem !default;
 $input-disabled-color: rgba(0,0,0, .26) !default;
 $input-disabled-solid-color: #BDBDBD !default;
-
 
 // Radio Buttons
 $radio-fill-color: $secondary-color !default;
@@ -92,13 +95,20 @@ $element-top-margin: $gutter-width/3 !default;
 $element-bottom-margin: ($gutter-width*2)/3 !default;
 
 /*** Navbar ***/
+$nav-bar-color: rgba(white, .50 ) !default;
 $navbar-height: 64px !default;
 $navbar-height-mobile: 56px !default;
-
+$navbar-font-color: #000 !default;
+$navbar-brand-font-size: 2.1rem !default;
 
 /*** SideNav ***/
+$sidenav-bg-color: #fff !default;
+$sidenav-padding-right: 15px !default;
 
-
+/*** Photo Slider ***/
+$slider-bg-color: color('grey', 'base') !default;
+$slider-bg-color-light: color('grey', 'lighten-2') !default;
+$slider-indicator-color: color('green', 'base') !default;
 
 /*** Tabs ***/
 $tabs-underline-color: $primary-color-light !default;
@@ -107,6 +117,7 @@ $tabs-bg-color: #fff !default;
 
 /*** Tables ***/
 $table-border-color: #d0d0d0 !default;
+// $table-striped-color: #f2f2f2 !default;
 $table-highlighted-color: rgba(38,166,154, .5) !default;
 $table-striped-color: rgba(200,200,200,.5) !default;
 
