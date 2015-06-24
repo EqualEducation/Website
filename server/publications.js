@@ -1,5 +1,4 @@
 SearchSource.defineSource('contacts', function(searchText, options) {
-  console.log(searchText)
   var options = {sort: {isoScore: -1}, limit: 20};
 
   if(searchText) {
@@ -20,12 +19,23 @@ SearchSource.defineSource('contacts', function(searchText, options) {
 
     return Contacts.find(selector, options).fetch();
   } else {
-    return Contacts.find({}, options).fetch();
+    // return Contacts.find({}, options).fetch();
+    return nil;
   }
 });
 
 function buildRegExp(searchText) {
   // this is a dumb implementation
+  console.log("Start Search");
+  console.log(searchText);
+  var partsByQuotes = searchText.trim().split(/[\"]+/);
   var parts = searchText.trim().split(/[ \-\:]+/);
-  return new RegExp("(" + parts.join('|') + ")", "ig");
+  console.log(partsByQuotes);
+  var regex = new RegExp("(" + parts.join('|') + ")", "ig");
+  console.log(regex);
+  return regex;
 }
+
+Meteor.publish("published_articles", function () {
+  return Articles.find({}, {sort: {start_date: -1}, limit: 10});
+});
