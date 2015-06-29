@@ -34,14 +34,18 @@ Template.register.events({
               if (err) {
                 console.log(err)
                 FlashMessages.sendError(err.reason);
-              } else {
+                return;
+              }
+              if (Router.current().route.name === 'accounts') {
+                console.log("User logged in");
                 FlashMessages.sendSuccess("Successfully logged in");
-                Router.go("/staff");
+                return Router.go("/staff");
               }
 
             });
         } else {
           FlashMessages.sendError("Error. Password must be at least 6 characters.");
+          return;
         }
 
 
@@ -68,12 +72,14 @@ Template.login.events({
         if (err){
           console.log(err)
           FlashMessages.sendError(err.reason);
+          return;
+
         }
-        else {
+        if (Router.current().route.name === 'accounts') {
           console.log("User logged in");
           FlashMessages.sendSuccess("Successfully logged in");
-          Router.go("/staff");
-      }
+          return Router.go("/staff");
+        }
       });
          return false;
     }

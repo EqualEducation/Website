@@ -34,18 +34,15 @@
 </template>
 
 <template name="article">
-  <!-- <h1>{{this.content_type}}</h1>
-  <h2>{{getDateFromTimeStamp this.start_date}}</h2>
-  <p>{{this.blurb}}</p>
-  <p>{{this.mainpic}}</p>
-  <img src="http://equaleducation.org.za{{this.mainpic}}">
-  <br/> -->
-  <!-- <div class="row">
+  <div class="row">
         <div class="col s12 m7">
           <div class="card">
             <div class="card-image">
               <img src="http://equaleducation.org.za{{this.mainpic}}">
-              <span class="card-title">{{this.title}}</span>
+              <span class="card-title">
+                <p>{{getDateFromTimeStamp this.start_date}}</p>
+                <p>{{this.title}}</p>
+              </span>
             </div>
             <div class="card-content">
               <p>{{this.blurb}}</p>
@@ -55,24 +52,8 @@
             </div>
           </div>
         </div>
-      </div> -->
-      <div class="row">
-        <div class="col s12 m7">
-          <div class="card">
-            <div class="card-image">
-              <img src="http://materializecss.com/images/sample-1.jpg">
-              <span class="card-title">Card Title</span>
-            </div>
-            <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
       </div>
+
 </template>
 
 
