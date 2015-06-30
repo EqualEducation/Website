@@ -61,13 +61,23 @@
 <!-- Modal Trigger -->
 
 <!-- Modal Structure -->
-<div id="fields" class="modal">
+<div id="fields" class="modal modal-fixed-footer">
   <div class="modal-content">
     <h4>Edit Search Fields</h4>
-    <p>A bunch of text</p>
+    <!-- <form action="#"> -->
+    <div class="row">
+    {{#each visibleContactFields}}
+
+    <div class="col s6 m6">
+      <input type="checkbox" id="{{name}}" />
+      <label for="{{name}}">{{display_name}}</label>
+    </div>
+    {{/each}}
+  </div>
+  <!-- </form> -->
   </div>
   <div class="modal-footer">
-    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    <a href="#!" class=" modal-action modal-close btn-flat">Save</a>
   </div>
 </div>
 </template>
