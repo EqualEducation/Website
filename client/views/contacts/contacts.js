@@ -8,6 +8,10 @@ Template.searchBox.onRendered(function() {
    });
 });
 
+Template.advancedSearch.onRendered(function() {
+  $('.modal-trigger').leanModal();
+});
+
 var options = {
   keepHistory: 1000 * 60 * 5,
   localSearch: true
@@ -42,3 +46,9 @@ Template.searchBox.events({
     ContactsSearch.search(text);
   }, 200)
 });
+
+Template.advancedSearch.event({
+  "click .edit_search_fields": function(e,t) {
+
+  }
+})
