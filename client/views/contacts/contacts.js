@@ -10,14 +10,44 @@ Template.searchBox.onRendered(function() {
 
 Template.advancedSearch.onRendered(function() {
   $('.modal-trigger').leanModal();
-  $('select').material_select();
-
 });
 
-Template.registerHelper("visibleContactFields", function (param2) {
+Template.advancedSearchSelect.onRendered(function() {
+  $('select').material_select();
+});
+
+Template.registerHelper("availableContactFields", function () {
     var contactfields = ContactFields.find().fetch();
+    console.log(contactfields)
     return contactfields;
 });
+
+Template.registerHelper("selectedContactFields", function (param2) {
+    if (Session.get("fieldsToSearch") != undefined) {
+      var contactfields = ContactFields.find( { name: { $in: Session.get("fieldsToSearch") } } ).fetch();
+      return contactfields;
+    } else {
+      var contactfields = ContactFields.find({default: true}).fetch();
+      return contactfields;
+    }
+});
+
+Template.registerHelper("userSelectedOrDefault", function (field, isDefault) {
+  var ret = false;
+  var fieldsToSearch = Session.get("fieldsToSearch")
+  console.log(fieldsToSearch)
+  if (fieldsToSearch != undefined) {
+    if (fieldsToSearch[field] != undefined) {
+      console.log(field+": " + ret);
+      ret = true;
+    }
+  }
+  // else if (isDefault != undefined) {
+  //     ret = isDefault;
+  // }
+  return ret;
+});
+
 
 //SEARCH
 Template.searchResult.rendered = function() {
@@ -67,6 +97,13 @@ Template.searchBox.events({
 //ADVANCED SEARCH
 Template.advancedSearch.events({
   "click .edit_search_fields": function(e,t) {
+  },
+  "click .save_fields": function(e,t) {
+    var searchIDs = $("input:checkbox:checked").map(function(){
+         return $(this).attr("id");
+    }).get();
+    Session.set("fieldsToSearch",searchIDs)
 
+    return;
   }
 })

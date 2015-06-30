@@ -336,8 +336,11 @@
         dropdownIcon.addClass('disabled');
 
       var $newSelect = $('<input type="text" class="select-dropdown" readonly="true" ' + (($select.is(':disabled')) ? 'disabled' : '') + ' data-activates="select-options-' + uniqueID +'" value="'+ label.html() +'"/>');
-      $select.before($newSelect);
       $newSelect.before(dropdownIcon);
+
+      $select.before($newSelect);
+
+      // $newSelect.before(dropdownIcon);
 
       $('body').append(options);
       // Check if section element is disabled

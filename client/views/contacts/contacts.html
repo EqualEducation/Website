@@ -27,32 +27,34 @@
   </div>
 </template>
 
+<template name="advancedSearchSelect">
+  <select>
+    <option value="" disabled selected>Select...</option>
+    {{#each this}}
+      <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
+</template>
+
 <template name="advancedSearch">
   <div class="container">
   <form class="col s12">
     <div class="row">
-      {{#each visibleContactFields}}
-        {{#if default}}
+      {{#each selectedContactFields}}
           {{#if options}}
           <div class="input-field col s6">
-            <select>
-              <option value="" disabled selected>Select...</option>
-              {{#each options}}
-                <option value={{this}}>{{this}}</option>
-              {{/each}}
-
-            </select>
+            {{> advancedSearchSelect options}}
             <label>{{display_name}}</label>
           </div>
           {{else}}
             <div class="input-field col s6">
-              <input id="icon_prefix" type="text" class="validate">
-              <label for="icon_prefix">{{display_name}}</label>
+              <input id="input_{{name}}" type="text" class="validate">
+              <label for="input_{{name}}">{{display_name}}</label>
             </div>
           {{/if}}
-        {{/if}}
       {{/each}}
     </div>
+    <a class="btn" href="#search">Search</a>
     <a class="btn modal-trigger" href="#fields">Edit Search Fields</a>
   </form>
   <br/>
@@ -62,21 +64,18 @@
 <!-- Modal Structure -->
 <div id="fields" class="modal modal-fixed-footer">
   <div class="modal-content">
-    <h4>Edit Search Fields</h4>
-    <!-- <form action="#"> -->
+    <h4>Edit Visible Fields</h4>
     <div class="row">
-    {{#each visibleContactFields}}
-
-    <div class="col s6 m6">
-      <input type="checkbox" id="{{name}}" />
-      <label for="{{name}}">{{display_name}}</label>
-    </div>
+    {{#each availableContactFields}}
+      <div class="col s6 m6">
+        <input type="checkbox" checked="{{userSelectedOrDefault name default}}" class="toggle-checked" id="{{name}}"/>
+        <label for="{{name}}">{{display_name}}</label>
+      </div>
     {{/each}}
   </div>
-  <!-- </form> -->
   </div>
   <div class="modal-footer">
-    <a href="#!" class="modal-action modal-close btn-flat">Save</a>
+    <a href="" class="modal-action modal-close btn-flat save_fields">Save</a>
   </div>
 </div>
 </template>
@@ -92,7 +91,7 @@
     <table class="responsive-table hoverable striped">
       <thead>
         <tr>
-          {{#each visibleContactFields}}
+          {{#each availableContactFields}}
             {{#if default}}
               <th data-field={{name}}>{{display_name}}</th>
             {{/if}}
@@ -104,7 +103,7 @@
 
         {{#each getContacts}}
         <tr>
-          {{#each getFieldValueForContact visibleContactFields this}}
+          {{#each getFieldValueForContact availableContactFields this}}
             <td>{{this}}</td>
           {{/each}}
           <td><i class="contacts mdi-action-delete"></i></td>
