@@ -83,43 +83,25 @@
     <table class="responsive-table hoverable striped">
       <thead>
         <tr>
-          <th data-field="id">City</th>
-          <th data-field="name">Contact Type</th>
-          <!-- <th data-field="price">Contact Subtype</th> -->
-          <th data-field="price">Member</th>
-          <th data-field="price">First Name</th>
-          <th data-field="price">Last Name</th>
-          <!-- <th data-field="price">School</th> -->
-          <th data-field="price">Email</th>
-          <th data-field="price">Cellphone</th>
-          <!-- <th data-field="price">Landline</th> -->
-          <th data-field="price">Grade</th>
-          <th data-field="price">Youth Group</th>
-          <th data-field="price">Year Group</th>
-          <!-- <th data-field="price">Preferred Language</th> -->
+          {{#each visibleContactFields}}
+            {{#if default}}
+              <th data-field={{name}}>{{display_name}}</th>
+            {{/if}}
+          {{/each}}
           <th></th>
         </tr>
       </thead>
       <tbody>
+
         {{#each getContacts}}
         <tr>
-          <td>{{this.city}}</td>
-          <td>{{this.contact_type}}</td>
-          <!-- <td>{{this.contact_sub_type}}</td> -->
-          <td>{{this.member}}</td>
-          <td>{{this.first_name}}</td>
-          <td>{{this.last_name}}</td>
-          <!-- <td>{{this.school}}</td> -->
-          <td>{{this.email}}</td>
-          <td>{{this.cellphone}}</td>
-          <!-- <td>{{this.phone}}</td> -->
-          <td>{{this.grade}}</td>
-          <td>{{this.youth_group}}</td>
-          <td>{{this.year_group}}</td>
-          <!-- <td>{{this.preferred_language}}</td> -->
+          {{#each getFieldValueForContact visibleContactFields this}}
+            <td>{{this}}</td>
+          {{/each}}
           <td><i class="contacts mdi-action-delete"></i></td>
         </tr>
       {{/each}}
+
       <!-- {{> add_contact}} -->
 
       </tbody>

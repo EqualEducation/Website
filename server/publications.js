@@ -50,3 +50,11 @@ Meteor.publish("published_articles", function () {
 
     });
 });
+
+Meteor.publish("visible_contact_fields", function () {
+  return ContactFields.find(
+    //query predicate (where clause)
+    {
+      visible : true
+    });
+});

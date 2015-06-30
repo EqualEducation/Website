@@ -12,6 +12,16 @@ Template.advancedSearch.onRendered(function() {
   $('.modal-trigger').leanModal();
 });
 
+Template.registerHelper("visibleContactFields", function (param2) {
+    var contactfields = ContactFields.find().fetch();
+    return contactfields;
+});
+
+//SEARCH
+Template.searchResult.rendered = function() {
+  ContactsSearch.search('');
+};
+
 var options = {
   keepHistory: 1000 * 60 * 5,
   localSearch: true
@@ -30,15 +40,20 @@ Template.searchResult.helpers({
       sort: {isoScore: -1}
     });
   },
-
   isLoading: function() {
     return ContactsSearch.getStatus().loading;
+  },
+  getFieldValueForContact: function(visibleContactFields, contact) {
+    var visibleFieldValues = []
+    visibleContactFields.forEach(function(field){
+      if (field.default) {
+        var fieldName = field.name
+        visibleFieldValues.push(contact[fieldName])
+      }
+    })
+    return visibleFieldValues;
   }
 });
-
-Template.searchResult.rendered = function() {
-  ContactsSearch.search('');
-};
 
 Template.searchBox.events({
   "keyup #search-box": _.throttle(function(e) {
@@ -47,7 +62,8 @@ Template.searchBox.events({
   }, 200)
 });
 
-Template.advancedSearch.event({
+//ADVANCED SEARCH
+Template.advancedSearch.events({
   "click .edit_search_fields": function(e,t) {
 
   }
