@@ -10,6 +10,8 @@ Template.searchBox.onRendered(function() {
 
 Template.advancedSearch.onRendered(function() {
   $('.modal-trigger').leanModal();
+  $('select').material_select();
+
 });
 
 Template.registerHelper("visibleContactFields", function (param2) {
