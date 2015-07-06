@@ -2,8 +2,9 @@
   <div class="background" style="background-image:url(staff.jpg)">
       <h1>Contacts</h1>
       <div class="contacts section">
-        {{> searchBox }}
-        {{> searchResult}}
+        {{> reactiveTable collection="contacts" settings=settings}}
+        <!-- {{> searchBox }}
+        {{> searchResult}} -->
       </div>
     </div>
 </template>

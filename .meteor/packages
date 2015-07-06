@@ -13,3 +13,4 @@ accounts-base
 mrt:flash-messages
 percolate:paginated-subscription
 meteorhacks:search-source
+aslagle:reactive-table

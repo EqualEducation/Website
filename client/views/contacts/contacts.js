@@ -1,3 +1,5 @@
+
+
 Template.add_contact.onRendered(function() {
   $('.modal-trigger').leanModal();
 });
@@ -107,3 +109,18 @@ Template.advancedSearch.events({
     return;
   }
 })
+
+//REACTIVE TABLES
+Template.contacts.helpers({
+    // fields: function () {
+    //   return fields;
+    // },
+
+    settings: function () {
+        return {
+            rowsPerPage: 20,
+            showFilter: true,
+            fields: fields
+        };
+    }
+});
