@@ -8,4 +8,22 @@
 }
 .tool-card-panel{
   margin: 0px;
+
+}
+
+.tool-card-content{
+  height : 70px;
+  padding-left: 18px;
+}
+
+.tool-card-title {
+
+  font-size: 22px;
+
+}
+
+.tool-border{
+  border-color: #FFF;
+  border-style: solid;
+  border-spacing: 4px;
 }
