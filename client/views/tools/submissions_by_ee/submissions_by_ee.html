@@ -1,3 +1,45 @@
 <template name="submissions_by_ee">
   <h1> Submissions By EE </h1>
+
+  <div class="container">
+  <!-- Modal Trigger -->
+  {{#if currentUser}}
+  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add Submission</a>
+  {{/if}}
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Add Submissions</h4>
+      <form class="submission-by">
+      <div class="file-field input-field">
+        <!-- <div class="row">
+        <input class="file-path validate pdfFile" type="text"/>
+        <div class="btn">
+          <span>Upload</span>
+          <input type="file"/>
+        </div>
+      </div> -->
+        <div class="row">
+        <div class="input-field col s6">
+          <textarea id="description" type="text" class="materialize-textarea description" name="text"></textarea>
+          <label for="description">Description</label>
+        </div>
+      </div>
+      </div>
+    </form>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn save">Save</a>
+    </div>
+  </div>
+  <ul>
+      {{#each submissionsByEe}}
+        {{>submissionByEe}}
+      {{/each}}
+    </ul>
+</div>
+</template>
+
+<template name="submissionByEe">
+    <li>{{description}}</li>
 </template>
