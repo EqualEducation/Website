@@ -14,8 +14,7 @@
       <li>
         <div class="contacts collapsible-header active">Quick Search</div>
         <div class="contacts collapsible-body">
-          <p>Quick Search only searches the visible fields in the table below. Any fields not visible will not be searched.</p>
-          <div class="quick_search"><input type="text" id="search-box" placeholder="Search contacts here" /></div></div>
+          <div class="quick_search">{{> reactiveTableFilter id="myFilter" label="Quick Search only searches the visible fields in the table below. Any fields not visible will not be searched." }}</div></div>
       </li>
       <li>
         <div class="contacts collapsible-header">Advanced Search</div>
@@ -81,40 +80,7 @@
 </template>
 
 <template name="searchResult">
-  <div id='search-result'>
-    <div id="search-meta">
-      {{#if isLoading}}
-      searching ...
-      {{/if}}
-    </div>
-
-    <table class="responsive-table hoverable striped">
-      <thead>
-        <tr>
-          {{#each availableContactFields}}
-            {{#if default}}
-              <th data-field={{name}}>{{display_name}}</th>
-            {{/if}}
-          {{/each}}
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-
-        {{#each getContacts}}
-        <tr>
-          {{#each getFieldValueForContact availableContactFields this}}
-            <td>{{this}}</td>
-          {{/each}}
-          <td><i class="contacts mdi-action-delete"></i></td>
-        </tr>
-      {{/each}}
-
-      <!-- {{> add_contact}} -->
-
-      </tbody>
-    </table>
-  </div>
+  {{> reactiveTable collection="contacts" settings=settings}}
 </template>
 
 <template name="add_contact">

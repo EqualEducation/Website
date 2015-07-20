@@ -1,3 +1,5 @@
+
+
 Template.add_contact.onRendered(function() {
   $('.modal-trigger').leanModal();
 });
@@ -35,7 +37,6 @@ Template.registerHelper("selectedContactFields", function (param2) {
 Template.registerHelper("userSelectedOrDefault", function (field, isDefault) {
   var ret = false;
   var fieldsToSearch = Session.get("fieldsToSearch")
-  console.log(fieldsToSearch)
   if (fieldsToSearch != undefined) {
     if (fieldsToSearch[field] != undefined) {
       console.log(field+": " + ret);
@@ -49,50 +50,7 @@ Template.registerHelper("userSelectedOrDefault", function (field, isDefault) {
 });
 
 
-//SEARCH
-Template.searchResult.rendered = function() {
-  ContactsSearch.search('');
-};
-
-var options = {
-  keepHistory: 1000 * 60 * 5,
-  localSearch: true
-};
-
 var fields = ['city', 'contact_type', 'contact_sub_type', 'member', 'first_name', 'last_name', 'email', 'cellphone','grade','youth_group','year_group'];
-
-ContactsSearch = new SearchSource('contacts', fields, options);
-
-Template.searchResult.helpers({
-  getContacts: function() {
-    return ContactsSearch.getData({
-      // transform: function(matchText, regExp) {
-      //   return matchText.replace(regExp, "<b>$&</b>")
-      // },
-      sort: {isoScore: -1}
-    });
-  },
-  isLoading: function() {
-    return ContactsSearch.getStatus().loading;
-  },
-  getFieldValueForContact: function(visibleContactFields, contact) {
-    var visibleFieldValues = []
-    visibleContactFields.forEach(function(field){
-      if (field.default) {
-        var fieldName = field.name
-        visibleFieldValues.push(contact[fieldName])
-      }
-    })
-    return visibleFieldValues;
-  }
-});
-
-Template.searchBox.events({
-  "keyup #search-box": _.throttle(function(e) {
-    var text = $(e.target).val().trim();
-    ContactsSearch.search(text);
-  }, 200)
-});
 
 //ADVANCED SEARCH
 Template.advancedSearch.events({
@@ -107,3 +65,15 @@ Template.advancedSearch.events({
     return;
   }
 })
+
+//REACTIVE TABLES
+Template.searchResult.helpers({
+    settings: function () {
+        return {
+            rowsPerPage: 20,
+            showFilter: false,
+            fields: fields,
+            filters: ['myFilter']
+        };
+    }
+});
