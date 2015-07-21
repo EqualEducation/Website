@@ -14,6 +14,11 @@ Template.advancedSearch.onRendered(function() {
   $('.modal-trigger').leanModal();
 });
 
+Template.searchResult.onRendered(function() {
+  Session.set("visibleFields", fields)
+  $('.modal-trigger-columns').leanModal();
+});
+
 Template.advancedSearchSelect.onRendered(function() {
   $('select').material_select();
 });
@@ -34,7 +39,7 @@ Template.registerHelper("selectedContactFields", function (param2) {
     }
 });
 
-Template.registerHelper("userSelectedOrDefault", function (field, isDefault) {
+Template.registerHelper("userSelectedSearchableOrDefault", function (field, isDefault) {
   var ret = false;
   var fieldsToSearch = Session.get("fieldsToSearch")
   if (fieldsToSearch != undefined) {
@@ -49,22 +54,54 @@ Template.registerHelper("userSelectedOrDefault", function (field, isDefault) {
   return ret;
 });
 
-
 var fields = ['city', 'contact_type', 'contact_sub_type', 'member', 'first_name', 'last_name', 'email', 'cellphone','grade','youth_group','year_group'];
+
+Template.registerHelper("userSelectedVisibleOrDefault", function (field, isDefault) {
+  var ret = false;
+  var visibleFields = Session.get("visibleFields")
+  if (visibleFields != undefined) {
+    if (visibleFields[field] != undefined) {
+      console.log(field+": " + ret);
+      ret = true;
+    }
+  }
+  // else if (isDefault != undefined) {
+  //     ret = isDefault;
+  // }
+  return ret;
+});
+
+
 
 //ADVANCED SEARCH
 Template.advancedSearch.events({
   "click .edit_search_fields": function(e,t) {
   },
   "click .save_fields": function(e,t) {
-    var searchIDs = $("input:checkbox:checked").map(function(){
+    var searchIDs = $("#fields input:checkbox:checked").map(function(){
          return $(this).attr("id");
     }).get();
     Session.set("fieldsToSearch",searchIDs)
 
     return;
   }
-})
+});
+
+Template.searchResult.events({
+
+  "click .save_columns": function(e,t) {
+    var searchIDs = $("#columns input:checkbox:checked").map(function(){
+        var fullId = $(this).attr("id");
+        var stringToRemove = "column_"
+        var actualId = fullId.substring(stringToRemove.length, fullId.length);
+        console.log(actualId);
+        return actualId;
+    }).get();
+    Session.set("visibleFields",searchIDs)
+
+    return;
+  }
+});
 
 //REACTIVE TABLES
 Template.searchResult.helpers({
@@ -72,8 +109,8 @@ Template.searchResult.helpers({
         return {
             rowsPerPage: 20,
             showFilter: false,
-            fields: fields,
-            filters: ['myFilter']
+            fields: Session.get("visibleFields"),
+            filters: ['myFilter'],
         };
     }
 });

@@ -2,14 +2,17 @@
   background-color: rgba(255,255,255,0.7)
 }
 
+.contacts.container {
+  margin: 10px;
+}
 
 .contacts i {
   font-size: 20px;
 }
 
 .contacts.collapsible {
-  border: none;
-  box-shadow: none;
+  /*border: none;*/
+  /*box-shadow: none;*/
 }
 .contacts.collapsible-header {
   background-color: transparent;
@@ -36,14 +39,6 @@
   width: 50%;
 }
 
-.searchBox {
-  /*background-color: rgba(38,166,154, .5);*/
-  /*border-radius: 2px;*/
+.buttons_menu {
+  float: right;
 }
-
-/*.contacts.collapsible-header.active button {
-  background-color: #2bbbad;
-}*/
-/*.hoverable:hover{
-  background-color: rgba(38,166,154, .5);
-}*/
