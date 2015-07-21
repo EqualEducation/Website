@@ -1,4 +1,5 @@
 
+var fields = ['city', 'contact_type', 'contact_sub_type', 'member', 'first_name', 'last_name', 'email', 'cellphone','grade','youth_group','year_group'];
 
 Template.add_contact.onRendered(function() {
   $('.modal-trigger').leanModal();
@@ -11,6 +12,7 @@ Template.searchBox.onRendered(function() {
 });
 
 Template.advancedSearch.onRendered(function() {
+  Session.set("fieldsToSearch", fields);
   $('.modal-trigger').leanModal();
 });
 
@@ -42,29 +44,37 @@ Template.registerHelper("selectedContactFields", function (param2) {
 Template.registerHelper("userSelectedSearchableOrDefault", function (field, isDefault) {
   var ret = false;
   var fieldsToSearch = Session.get("fieldsToSearch")
-  if (fieldsToSearch != undefined) {
-    if (fieldsToSearch[field] != undefined) {
-      console.log(field+": " + ret);
-      ret = true;
-    }
-  }
+  var index = fieldsToSearch.indexOf(field)
+  if (index > -1) {
+    ret = true;
+  };
+
+  // if (fieldsToSearch != undefined) {
+  //   if (fieldsToSearch[field] != undefined) {
+  //     console.log(field+": " + ret);
+  //     ret = true;
+  //   }
+  // }
   // else if (isDefault != undefined) {
   //     ret = isDefault;
   // }
   return ret;
 });
 
-var fields = ['city', 'contact_type', 'contact_sub_type', 'member', 'first_name', 'last_name', 'email', 'cellphone','grade','youth_group','year_group'];
 
 Template.registerHelper("userSelectedVisibleOrDefault", function (field, isDefault) {
   var ret = false;
   var visibleFields = Session.get("visibleFields")
-  if (visibleFields != undefined) {
-    if (visibleFields[field] != undefined) {
-      console.log(field+": " + ret);
-      ret = true;
-    }
-  }
+  var index = visibleFields.indexOf(field)
+  if (index > -1) {
+    ret = true;
+  };
+  // if (visibleFields != undefined) {
+  //   if (visibleFields[field] != undefined) {
+  //     console.log(field+": " + ret);
+  //     ret = true;
+  //   }
+  // }
   // else if (isDefault != undefined) {
   //     ret = isDefault;
   // }
