@@ -92,7 +92,7 @@
 //     // { name: "hash", display_name: 'Hash', visible: false},
 //     // { name: "household_name", display_name: 'Household Name', visible: false},
 //     // { name: "id", display_name: 'Id', visible: false},
-// 
+//
 //     // { name: "postal_greeting_custom", display_name: 'Postal Greeting - Custom', visible: false},
 //     // { name: "postal_greeting_display", display_name: 'Postal Greeting - Display', visible: false},
 //     // { name: "postal_greeting_id", display_name: 'Postal Greeting - Id', visible: false},

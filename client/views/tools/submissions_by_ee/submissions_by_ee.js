@@ -2,7 +2,6 @@ Template.submissions_by_ee.onRendered(function() {
     $('.modal-trigger').leanModal();
 })
 
-
 if(Meteor.isClient){
   // This code only runs on the client
   Meteor.subscribe("submissionsByEe");

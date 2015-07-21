@@ -39,6 +39,11 @@
   width: 50%;
 }
 
+.menu_button {
+  font-size: 15px;
+  width: 140px;
+}
+
 .buttons_menu {
   float: right;
 }

@@ -1,7 +1,16 @@
 <template name="contacts">
   <!-- <div class="background" style="background-image:url(staff.jpg)"> -->
   <div class="background">
-      <h1>Contacts</h1>
+      <h1>Contacts <span><a class='dropdown-button btn menu_button' data-beloworigin="true" href='#' data-activates='dropdown1'>Menu</a></span></h1>
+      <ul id='dropdown1' class='dropdown-content menu_button'>
+        <li><a href="#!">Bulk upload</a></li>
+        <li class="divider"></li>
+        <li><a href="#!">Add Contact</a></li>
+        <li class="divider"></li>
+        <li><a class="menu_save" href="#!">Save search</a></li>
+        <li><a href="#!">Open search</a></li>
+      </ul>
+
       <div class="contacts section">
         {{> searchBox }}
         {{> searchResult}}
@@ -15,7 +24,8 @@
       <li>
         <div class="contacts collapsible-header active">Quick Search</div>
         <div class="contacts collapsible-body">
-          <div class="quick_search">{{> reactiveTableFilter id="myFilter" label="Quick Search only searches the visible fields in the table below. Any fields not visible will not be searched." }}</div></div>
+          {{> quickSearch}}
+        </div>
       </li>
       <li>
         <div class="contacts collapsible-header">Advanced Search</div>
@@ -27,13 +37,10 @@
   </div>
 </template>
 
-<template name="advancedSearchSelect">
-  <select>
-    <option value="" disabled selected>Select...</option>
-    {{#each this}}
-      <option value="{{this}}">{{this}}</option>
-    {{/each}}
-  </select>
+<template name="quickSearch">
+  <div class="quick_search">
+    {{> reactiveTableFilter id="myFilter" label="Quick Search only searches the visible fields in the table below. Any fields not visible will not be searched." }}
+  </div>
 </template>
 
 <template name="advancedSearch">
@@ -80,11 +87,18 @@
 </div>
 </template>
 
+<template name="advancedSearchSelect">
+  <select>
+    <option value="" disabled selected>Select...</option>
+    {{#each this}}
+      <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
+</template>
+
 <template name="searchResult">
   <div class="buttons_menu">
     <a class="btn modal-trigger-columns" href="#columns">Edit Columns</a>
-    <a class="btn">Save Search</a>
-    <a class="btn">Open Search</a>
     <a class="btn">Export</a>
   </div>
   {{> reactiveTable collection="contacts" settings=settings}}

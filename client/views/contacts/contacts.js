@@ -1,4 +1,21 @@
 
+var fields = ['city', 'contact_type', 'contact_sub_type', 'member', 'first_name', 'last_name', 'email', 'cellphone','grade','youth_group','year_group'];
+
+Template.contacts.onRendered(function() {
+  Session.set("fieldsToSearch", fields);
+  Session.set("visibleFields", fields);
+  Session.set("quickSearchTerm", null);
+
+  $('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrain_width: false, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: false // Displays dropdown below the button
+    }
+  );
+})
 
 Template.add_contact.onRendered(function() {
   $('.modal-trigger').leanModal();
@@ -15,7 +32,6 @@ Template.advancedSearch.onRendered(function() {
 });
 
 Template.searchResult.onRendered(function() {
-  Session.set("visibleFields", fields)
   $('.modal-trigger-columns').leanModal();
 });
 
@@ -42,36 +58,57 @@ Template.registerHelper("selectedContactFields", function (param2) {
 Template.registerHelper("userSelectedSearchableOrDefault", function (field, isDefault) {
   var ret = false;
   var fieldsToSearch = Session.get("fieldsToSearch")
-  if (fieldsToSearch != undefined) {
-    if (fieldsToSearch[field] != undefined) {
-      console.log(field+": " + ret);
-      ret = true;
-    }
-  }
-  // else if (isDefault != undefined) {
-  //     ret = isDefault;
-  // }
+  var index = fieldsToSearch.indexOf(field)
+  if (index > -1) {
+    ret = true;
+  };
   return ret;
 });
 
-var fields = ['city', 'contact_type', 'contact_sub_type', 'member', 'first_name', 'last_name', 'email', 'cellphone','grade','youth_group','year_group'];
 
 Template.registerHelper("userSelectedVisibleOrDefault", function (field, isDefault) {
   var ret = false;
   var visibleFields = Session.get("visibleFields")
-  if (visibleFields != undefined) {
-    if (visibleFields[field] != undefined) {
-      console.log(field+": " + ret);
-      ret = true;
-    }
-  }
-  // else if (isDefault != undefined) {
-  //     ret = isDefault;
-  // }
+  var index = visibleFields.indexOf(field)
+  if (index > -1) {
+    ret = true;
+  };
   return ret;
 });
 
+//MENU
+Template.contacts.events({
+  "click .menu_save": function(e,t) {
+    var searchToSave = new Object()
+    searchToSave.quickSearchTerm = Session.get("quickSearchTerm");
+    searchToSave.createdAt = new Date();
+    var userSearches = UserSearches.find({userId : Meteor.userId()}).fetch();
 
+    if (userSearches.length == 0) {
+      UserSearches.insert({
+        userId : Meteor.userId(),
+        createdAt: new Date(),
+        searches : [searchToSave]
+      });
+    } else {
+      UserSearches.update({ userId: Meteor.userId()},{ $push: { searches: searchToSave }})
+    }
+  },
+  "click .menu_open": function(e,t) {
+    var existingUserSearches = UserSearches.find({userId : Meteor.userId()});
+    console.log(existingUserSearches);
+  }
+});
+
+
+//QUICK SEARCH
+Template.quickSearch.events({
+  "keyup input": function(e,t) {
+    var searchTerm = $(".reactive-table-input").val()
+    console.log(searchTerm)
+    Session.set("quickSearchTerm", searchTerm);
+  },
+});
 
 //ADVANCED SEARCH
 Template.advancedSearch.events({
@@ -88,7 +125,6 @@ Template.advancedSearch.events({
 });
 
 Template.searchResult.events({
-
   "click .save_columns": function(e,t) {
     var searchIDs = $("#columns input:checkbox:checked").map(function(){
         var fullId = $(this).attr("id");
@@ -98,7 +134,6 @@ Template.searchResult.events({
         return actualId;
     }).get();
     Session.set("visibleFields",searchIDs)
-
     return;
   }
 });
@@ -111,6 +146,7 @@ Template.searchResult.helpers({
             showFilter: false,
             fields: Session.get("visibleFields"),
             filters: ['myFilter'],
+            showNavigation: 'auto'
         };
     }
 });
