@@ -5,6 +5,8 @@ Template.contacts.onRendered(function() {
   Session.set("fieldsToSearch", fields);
   Session.set("visibleFields", fields);
   Session.set("quickSearchTerm", null);
+  $('.modal-trigger-save-search').leanModal();
+  $('.modal-trigger-open-search').leanModal();
 
   $('.dropdown-button').dropdown({
       inDuration: 300,
@@ -76,28 +78,48 @@ Template.registerHelper("userSelectedVisibleOrDefault", function (field, isDefau
   return ret;
 });
 
+Template.registerHelper("getUserSearches", function () {
+  console.log("Getting user searches");
+  console.log(Meteor.userId());
+  var existingUserSearches = UserSearches.find({}).fetch();
+  console.log(existingUserSearches);
+
+  return existingUserSearches.searches;
+
+});
+
 //MENU
 Template.contacts.events({
   "click .menu_save": function(e,t) {
     var searchToSave = new Object()
+    searchToSave.quickSearchName = $("#search_name").val();
     searchToSave.quickSearchTerm = Session.get("quickSearchTerm");
     searchToSave.createdAt = new Date();
-    var userSearches = UserSearches.find({userId : Meteor.userId()}).fetch();
+    var userSearches = UserSearches.findOne({userId : Meteor.userId()});
 
-    if (userSearches.length == 0) {
+    if (userSearches == undefined || userSearches.length == 0) {
       UserSearches.insert({
         userId : Meteor.userId(),
         createdAt: new Date(),
         searches : [searchToSave]
+      },
+      function( error, result) {
+        if ( error ) FlashMessages.showError(error);
+        if ( result ) FlashMessages.showSuccess("Saved Search"); //the _id of new object if successful
       });
     } else {
-      UserSearches.update({ userId: Meteor.userId()},{ $push: { searches: searchToSave }})
+      UserSearches.update({ userId: Meteor.userId()},{ $push: { searches: searchToSave }},
+      function( error, result) {
+        if ( error ) FlashMessages.showError(error);
+        if ( result ) FlashMessages.showSuccess("Saved Search"); //the _id of new object if successful
+      });
     }
+    FlashMessages.sendSuccess("Successfully saved");
   },
-  "click .menu_open": function(e,t) {
-    var existingUserSearches = UserSearches.find({userId : Meteor.userId()});
-    console.log(existingUserSearches);
-  }
+  // "click .menu_open": function(e,t) {
+  //   var existingUserSearches = UserSearches.find({userId : Meteor.userId()});
+  //   console.log(existingUserSearches);
+  // }
 });
 
 

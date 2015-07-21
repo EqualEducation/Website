@@ -47,3 +47,7 @@
 .buttons_menu {
   float: right;
 }
+
+.modal-fixed-footer.save {
+  max-height: 300px;
+}
