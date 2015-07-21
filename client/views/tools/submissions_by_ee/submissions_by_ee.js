@@ -1,12 +1,7 @@
 Template.submissions_by_ee.onRendered(function() {
     $('.modal-trigger').leanModal();
 })
-if (Meteor.isServer) {
-  // This code only runs on the server
-  Meteor.publish("submissionsByEe", function () {
-    return SubmissionByEe.find();
-  });
-}
+
 
 if(Meteor.isClient){
   // This code only runs on the client
@@ -14,7 +9,7 @@ if(Meteor.isClient){
 
   Template.submissions_by_ee.helpers({
     submissionsByEe: function () {
-      SubmissionByEe.find().fetch();
+      return SubmissionByEe.find().fetch();
     }
 
 
@@ -32,7 +27,7 @@ if(Meteor.isClient){
         description: descript,
         createdBy : Meteor.userId()
       });
-
+      console.log(SubmissionByEe.find());
     console.log(Meteor.userId());
       //Meteor.call("addFile", description);
 
