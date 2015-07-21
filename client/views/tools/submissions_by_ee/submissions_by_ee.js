@@ -1,13 +1,14 @@
 Template.submissions_by_ee.onRendered(function() {
     $('.modal-trigger').leanModal();
 })
+
 if(Meteor.isClient){
   // This code only runs on the client
   Meteor.subscribe("submissionsByEe");
 
   Template.submissions_by_ee.helpers({
     submissionsByEe: function () {
-      SubmissionByEe.find().fetch();
+      return SubmissionByEe.find().fetch();
     }
 
 
@@ -25,7 +26,7 @@ if(Meteor.isClient){
         description: descript,
         createdBy : Meteor.userId()
       });
-
+      console.log(SubmissionByEe.find());
     console.log(Meteor.userId());
       //Meteor.call("addFile", description);
 
