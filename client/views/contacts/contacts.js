@@ -1,6 +1,18 @@
 
 var fields = ['city', 'contact_type', 'contact_sub_type', 'member', 'first_name', 'last_name', 'email', 'cellphone','grade','youth_group','year_group'];
 
+Template.contacts.onRendered(function() {
+  $('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrain_width: false, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: false // Displays dropdown below the button
+    }
+  );
+})
+
 Template.add_contact.onRendered(function() {
   $('.modal-trigger').leanModal();
 });
@@ -121,6 +133,7 @@ Template.searchResult.helpers({
             showFilter: false,
             fields: Session.get("visibleFields"),
             filters: ['myFilter'],
+            showNavigation: 'auto'
         };
     }
 });

@@ -1,7 +1,16 @@
 <template name="contacts">
   <!-- <div class="background" style="background-image:url(staff.jpg)"> -->
   <div class="background">
-      <h1>Contacts</h1>
+      <h1>Contacts <span><a class='dropdown-button btn menu_button' data-beloworigin="true" href='#' data-activates='dropdown1'>Menu</a></span></h1>
+      <ul id='dropdown1' class='dropdown-content menu_button'>
+        <li><a href="#!">Bulk upload</a></li>
+        <li class="divider"></li>
+        <li><a href="#!">Add Contact</a></li>
+        <li class="divider"></li>
+        <li><a href="#!">Save search</a></li>
+        <li><a href="#!">Open search</a></li>
+      </ul>
+
       <div class="contacts section">
         {{> searchBox }}
         {{> searchResult}}
@@ -83,12 +92,7 @@
 <template name="searchResult">
   <div class="buttons_menu">
     <a class="btn modal-trigger-columns" href="#columns">Edit Columns</a>
-    <a class="btn">Save Search</a>
-    <a class="btn">Open Search</a>
     <a class="btn">Export</a>
-    <a class="btn">Bulk Upload</a>
-    <a class="btn">Add Contact</a>
-
   </div>
   {{> reactiveTable collection="contacts" settings=settings}}
 
