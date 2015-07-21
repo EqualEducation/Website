@@ -2,6 +2,10 @@
 var fields = ['city', 'contact_type', 'contact_sub_type', 'member', 'first_name', 'last_name', 'email', 'cellphone','grade','youth_group','year_group'];
 
 Template.contacts.onRendered(function() {
+  Session.set("fieldsToSearch", fields);
+  Session.set("visibleFields", fields);
+  Session.set("quickSearchTerm", null);
+
   $('.dropdown-button').dropdown({
       inDuration: 300,
       outDuration: 225,
@@ -24,12 +28,10 @@ Template.searchBox.onRendered(function() {
 });
 
 Template.advancedSearch.onRendered(function() {
-  Session.set("fieldsToSearch", fields);
   $('.modal-trigger').leanModal();
 });
 
 Template.searchResult.onRendered(function() {
-  Session.set("visibleFields", fields)
   $('.modal-trigger-columns').leanModal();
 });
 
@@ -60,16 +62,6 @@ Template.registerHelper("userSelectedSearchableOrDefault", function (field, isDe
   if (index > -1) {
     ret = true;
   };
-
-  // if (fieldsToSearch != undefined) {
-  //   if (fieldsToSearch[field] != undefined) {
-  //     console.log(field+": " + ret);
-  //     ret = true;
-  //   }
-  // }
-  // else if (isDefault != undefined) {
-  //     ret = isDefault;
-  // }
   return ret;
 });
 
@@ -81,19 +73,42 @@ Template.registerHelper("userSelectedVisibleOrDefault", function (field, isDefau
   if (index > -1) {
     ret = true;
   };
-  // if (visibleFields != undefined) {
-  //   if (visibleFields[field] != undefined) {
-  //     console.log(field+": " + ret);
-  //     ret = true;
-  //   }
-  // }
-  // else if (isDefault != undefined) {
-  //     ret = isDefault;
-  // }
   return ret;
 });
 
+//MENU
+Template.contacts.events({
+  "click .menu_save": function(e,t) {
+    var searchToSave = new Object()
+    searchToSave.quickSearchTerm = Session.get("quickSearchTerm");
+    searchToSave.createdAt = new Date();
+    var userSearches = UserSearches.find({userId : Meteor.userId()}).fetch();
 
+    if (userSearches.length == 0) {
+      UserSearches.insert({
+        userId : Meteor.userId(),
+        createdAt: new Date(),
+        searches : [searchToSave]
+      });
+    } else {
+      UserSearches.update({ userId: Meteor.userId()},{ $push: { searches: searchToSave }})
+    }
+  },
+  "click .menu_open": function(e,t) {
+    var existingUserSearches = UserSearches.find({userId : Meteor.userId()});
+    console.log(existingUserSearches);
+  }
+});
+
+
+//QUICK SEARCH
+Template.quickSearch.events({
+  "keyup input": function(e,t) {
+    var searchTerm = $(".reactive-table-input").val()
+    console.log(searchTerm)
+    Session.set("quickSearchTerm", searchTerm);
+  },
+});
 
 //ADVANCED SEARCH
 Template.advancedSearch.events({
@@ -110,7 +125,6 @@ Template.advancedSearch.events({
 });
 
 Template.searchResult.events({
-
   "click .save_columns": function(e,t) {
     var searchIDs = $("#columns input:checkbox:checked").map(function(){
         var fullId = $(this).attr("id");
@@ -120,7 +134,6 @@ Template.searchResult.events({
         return actualId;
     }).get();
     Session.set("visibleFields",searchIDs)
-
     return;
   }
 });

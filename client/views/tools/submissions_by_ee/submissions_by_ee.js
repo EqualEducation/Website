@@ -1,13 +1,6 @@
 Template.submissions_by_ee.onRendered(function() {
     $('.modal-trigger').leanModal();
 })
-if (Meteor.isServer) {
-  // This code only runs on the server
-  Meteor.publish("submissionsByEe", function () {
-    return SubmissionByEe.find();
-  });
-}
-
 if(Meteor.isClient){
   // This code only runs on the client
   Meteor.subscribe("submissionsByEe");

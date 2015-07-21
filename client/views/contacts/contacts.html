@@ -7,7 +7,7 @@
         <li class="divider"></li>
         <li><a href="#!">Add Contact</a></li>
         <li class="divider"></li>
-        <li><a href="#!">Save search</a></li>
+        <li><a class="menu_save" href="#!">Save search</a></li>
         <li><a href="#!">Open search</a></li>
       </ul>
 
@@ -24,7 +24,8 @@
       <li>
         <div class="contacts collapsible-header active">Quick Search</div>
         <div class="contacts collapsible-body">
-          <div class="quick_search">{{> reactiveTableFilter id="myFilter" label="Quick Search only searches the visible fields in the table below. Any fields not visible will not be searched." }}</div></div>
+          {{> quickSearch}}
+        </div>
       </li>
       <li>
         <div class="contacts collapsible-header">Advanced Search</div>
@@ -36,13 +37,10 @@
   </div>
 </template>
 
-<template name="advancedSearchSelect">
-  <select>
-    <option value="" disabled selected>Select...</option>
-    {{#each this}}
-      <option value="{{this}}">{{this}}</option>
-    {{/each}}
-  </select>
+<template name="quickSearch">
+  <div class="quick_search">
+    {{> reactiveTableFilter id="myFilter" label="Quick Search only searches the visible fields in the table below. Any fields not visible will not be searched." }}
+  </div>
 </template>
 
 <template name="advancedSearch">
@@ -87,6 +85,15 @@
     <a href="" class="modal-action modal-close btn-flat save_fields">Save</a>
   </div>
 </div>
+</template>
+
+<template name="advancedSearchSelect">
+  <select>
+    <option value="" disabled selected>Select...</option>
+    {{#each this}}
+      <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
 </template>
 
 <template name="searchResult">
