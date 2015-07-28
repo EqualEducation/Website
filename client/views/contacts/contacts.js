@@ -79,13 +79,8 @@ Template.registerHelper("userSelectedVisibleOrDefault", function (field, isDefau
 });
 
 Template.registerHelper("getUserSearches", function () {
-  console.log("Getting user searches");
-  console.log(Meteor.userId());
-  var existingUserSearches = UserSearches.find({}).fetch();
-  console.log(existingUserSearches);
-
+  var existingUserSearches = UserSearches.findOne();
   return existingUserSearches.searches;
-
 });
 
 //MENU
@@ -95,7 +90,7 @@ Template.contacts.events({
     searchToSave.quickSearchName = $("#search_name").val();
     searchToSave.quickSearchTerm = Session.get("quickSearchTerm");
     searchToSave.createdAt = new Date();
-    var userSearches = UserSearches.findOne({userId : Meteor.userId()});
+    var userSearches = UserSearches.findOne();
 
     if (userSearches == undefined || userSearches.length == 0) {
       UserSearches.insert({
@@ -108,13 +103,13 @@ Template.contacts.events({
         if ( result ) FlashMessages.showSuccess("Saved Search"); //the _id of new object if successful
       });
     } else {
-      UserSearches.update({ userId: Meteor.userId()},{ $push: { searches: searchToSave }},
+      UserSearches.update({ "_id": userSearches._id},{ $push: { searches: searchToSave }},
       function( error, result) {
         if ( error ) FlashMessages.showError(error);
         if ( result ) FlashMessages.showSuccess("Saved Search"); //the _id of new object if successful
       });
     }
-    FlashMessages.sendSuccess("Successfully saved");
+    // FlashMessages.sendSuccess("Successfully saved");
   },
   // "click .menu_open": function(e,t) {
   //   var existingUserSearches = UserSearches.find({userId : Meteor.userId()});
@@ -171,4 +166,16 @@ Template.searchResult.helpers({
             showNavigation: 'auto'
         };
     }
+});
+
+Template.modal_open.events({
+  'click .open_search' : function() {
+    console.log(this);
+    console.log(this.quickSearchTerm);
+    var searchTerm = this.quickSearchTerm;
+    $(".reactive-table-input").val(searchTerm);
+    Session.set("quickSearchTerm", searchTerm);
+
+    $('#open').closeModal();
+  }
 });

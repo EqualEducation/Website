@@ -7,8 +7,8 @@
         <li class="divider"></li>
         <li><a href="#!">Add Contact</a></li>
         <li class="divider"></li>
-        <li><a class="modal-trigger-save-search" href="#save">Save search</a></li>
-        <li><a class="modal-trigger-open-search" href="#open">Open search</a></li>
+        <li><a class="modal-trigger-save-search" href="#save">Save search query</a></li>
+        <li><a class="modal-trigger-open-search" href="#open">Open search query</a></li>
       </ul>
       {{> modal_save}}
       {{> modal_open}}
@@ -170,7 +170,9 @@
 <template name="modal_save">
   <div id="save" class="modal modal-fixed-footer save">
     <div class="modal-content">
-      <h4>Save Search</h4>
+      <h4>Save Search Query</h4>
+      <p>When you save a search query, you are saving the search parameters (e.g. Firstname = "John", Lastname ="Smith")</p>
+      <p>You will be able to get the latest list of contacts whenever you open a saved search query</p>
       <form class>
         <div class="input-field">
           <input type="text" id="search_name" clas="validate">
@@ -189,12 +191,11 @@
   <div id="open" class="modal modal-fixed-footer">
     <div class="modal-content">
       <h4>Open Search</h4>
-      <p>test</p>
+      <ul>
       {{#each getUserSearches}}
-        <p>test2</p>
-        <!-- <p>{{this.quickSearchName}}</p> -->
+        <li><a href="#" id="{{this._id}}" class="open_search">{{this.quickSearchName}}</a></li>
       {{/each}}
-
+      </ul>
     </div>
     <div class="modal-footer">
       <a href="" class="modal-action modal-close btn-flat menu_open">Save</a>
