@@ -11,10 +11,6 @@ Template.searchResult.events({
   },
   "click .gen-csv": function (e) {
     var tableJSON = tableToJson($('#reactive-table-1')[0]);
-    // var table = $('#reative-table-1').tableToJSON(); // Convert the table into a javascript object
-    // console.log(table);
-    // alert(JSON.stringify(table));
-    console.log(tableJSON);
     JSONToCSVConvertor(tableJSON, "Equal Education Contacts", true)
   }
 });
@@ -55,10 +51,8 @@ function tableToJson(table) {
             rowData[ headers[j] ] = tableRow.cells[j].innerHTML;
 
         }
-        console.log(rowData);
         data.push(rowData);
     }
-
     return data;
 }
 
