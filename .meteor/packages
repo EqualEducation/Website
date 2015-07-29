@@ -15,7 +15,5 @@ percolate:paginated-subscription
 meteorhacks:search-source
 aslagle:reactive-table
 insecure
-cfs:standard-packages
-cfs:gridfs
-cfs:filesystem
 natestrauser:filepicker-plus
+meteortoys:allthings

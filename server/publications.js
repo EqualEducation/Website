@@ -18,14 +18,11 @@ Meteor.publish("visible_contact_fields", function () {
 });
 
 Meteor.publish("user_searches", function () {
-  return UserSearches.find({userId : Meteor.userId()});
+  // return UserSearches.find({userId : this.userId});
+  return UserSearches.find();
+
 });
 
 Meteor.publish("submissionsByEe", function () {
   return SubmissionByEe.find();
 });
-
-
-// Meteor.publish("contacts", function () {
-//   return Contacts.find();
-// })

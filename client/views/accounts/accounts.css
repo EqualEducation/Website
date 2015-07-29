@@ -11,9 +11,9 @@
   margin: auto;
 }
 
-
-
-
+.accounts.card {
+  background-color: rgba(255,255,255,0.8)
+}
 /*.background, .blur {
   background-image: url('/media/freelancer-desk.jpg');
   background-repeat: no-repeat;

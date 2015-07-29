@@ -11,7 +11,7 @@
 </template>
 
 <template name="dashboard">
-  <div class="card">
+  <div class="accounts card">
     <div class="card-content black-text">
       <span class="card-title black-text">Logged in as {{userEmailAddress}}</span>
       <p><a href="#" class="logout">Logout</a></p>
@@ -20,7 +20,7 @@
 </template>
 
 <template name="login">
-       <div class="card">
+       <div class="accounts card">
           <div class="card-content black-text">
             <span class="card-title black-text">Staff Log In</span>
             <p>Please use your Equal Education email address to log in</p>
@@ -53,7 +53,7 @@
       {{#if currentUser}}
           {{> dashboard}}
       {{else}}
-      <div class="card">
+      <div class="accounts card">
           <div class="card-content black-text">
               <span class="card-title black-text">Staff Register</span>
               <p>Please use your Equal Education email address to register as a new user</p>
