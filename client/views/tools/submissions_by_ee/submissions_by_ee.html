@@ -2,7 +2,7 @@
   <h3></h3>
   <div class="container">
     {{#if currentUser}}
-      <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+      <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add Submission</a>
     {{/if}}
 
     <div id="modal1" class="modal">
@@ -16,10 +16,8 @@
             </div>
           </div>
           <div class="row">
-            <!-- <input class="file-path validate" type="text"/> -->
-              <!-- <span>Upload File</span> -->
+              <input class="file-path validate file-url" type="text"/>
               <button id="upload-file" class="btn">Upload</button>
-              <!-- <input type="file" class="your-upload-class"/> -->
           </div>
         </form>
       </div>
@@ -29,19 +27,12 @@
     </div>
     <table border="1">
     <tbody>
-      {{#each theFiles}}
+      {{#each submissionsByEe}}
       <tr>
-        <td>{{uploadedAt}}</td><td>{{original.name}}</td><td><a href="{{url}}">link</a></td><td>{{#if isUploaded}}uploaded{{else}}uploading...{{/if}}</td><td><button id="deleteFileButton">delete</button></td>
+        <td>{{description}}</td><td><a href="{{fileUrl}}">link</a></td><td><button id="deleteFileButton">delete</button></td>
       </tr>
       {{/each}}
     </tbody>
   </table>
-    <!-- <ul class="collection">
-      {{#each submissionsByEe}}
-        <li class="collection-item">
-          {{description}}
-        </li>
-      {{/each}}
-    </ul> -->
   </div>
 </template>
