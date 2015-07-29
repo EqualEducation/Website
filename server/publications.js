@@ -26,7 +26,3 @@ Meteor.publish("user_searches", function () {
 Meteor.publish("submissionsByEe", function () {
   return SubmissionByEe.find();
 });
-
-// Meteor.publish("contacts", function () {
-//   return Contacts.find();
-// })
