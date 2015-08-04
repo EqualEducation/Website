@@ -50,7 +50,6 @@ Template.searchBox.events({
           filters.push(item._id)
         }
     })
-    console.log(filters);
     Session.set('reactiveTableFilters', filters);
 
   },
