@@ -1,9 +1,9 @@
 Template.modal_open.events({
   'click .open_search' : function() {
     var searchTerm = this.quickSearchTerm;
-    $(".reactive-table-input").val(searchTerm);
+    $('.reactive-table-input', '.quick_search').val(searchTerm);
     Session.set("quickSearchTerm", searchTerm);
     $('#open').closeModal();
-    $(".reactive-table-input").keyup();
+    $('.reactive-table-input', '.quick_search').keyup();
   }
 });

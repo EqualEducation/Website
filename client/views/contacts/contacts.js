@@ -40,19 +40,33 @@ Template.advancedSearchSelect.onRendered(function() {
   $('select').material_select();
 });
 
+Template.searchBox.events({
+  "click .advancedSearch" : function(e,t) {
+    // Session.set('reactiveTableFilters', []);
+    var fields = selectedContactFields();
+    var filters = [];
+    fields.forEach(function(item) {
+      if (item.options == undefined){
+          filters.push(item._id)
+        }
+    })
+    console.log(filters);
+    Session.set('reactiveTableFilters', filters);
+
+  },
+  "click .quickSearch" : function(e,t) {
+    var filters = ["quickSearchFilter"];
+    Session.set('reactiveTableFilters', filters);
+  }
+})
+
 Template.registerHelper("availableContactFields", function () {
     var contactfields = ContactFields.find().fetch();
     return contactfields;
 });
 
-Template.registerHelper("selectedContactFields", function (param2) {
-    if (Session.get("fieldsToSearch") != undefined) {
-      var contactfields = ContactFields.find( { name: { $in: Session.get("fieldsToSearch") } } ).fetch();
-      return contactfields;
-    } else {
-      var contactfields = ContactFields.find({default: true}).fetch();
-      return contactfields;
-    }
+Template.registerHelper("selectedContactFields", function () {
+  return selectedContactFields();
 });
 
 Template.registerHelper("userSelectedSearchableOrDefault", function (field, isDefault) {
@@ -78,7 +92,19 @@ Template.registerHelper("userSelectedVisibleOrDefault", function (field, isDefau
 
 Template.registerHelper("getUserSearches", function () {
   var existingUserSearches = UserSearches.findOne();
-  return existingUserSearches.searches;
+  if (existingUserSearches != undefined) {
+    return existingUserSearches.searches;
+  }
 });
 
+
+function selectedContactFields() {
+  if (Session.get("fieldsToSearch") != undefined) {
+    var contactfields = ContactFields.find( { name: { $in: Session.get("fieldsToSearch") } } ).fetch();
+    return contactfields;
+  } else {
+    var contactfields = ContactFields.find({default: true}).fetch();
+    return contactfields;
+  }
+}
 //MENU

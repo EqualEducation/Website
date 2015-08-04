@@ -9,14 +9,16 @@
             <label>{{display_name}}</label>
           </div>
           {{else}}
-            <div class="input-field col s6">
+          {{> reactiveTableFilter class=name id=_id label=display_name fields={{stringToArray name}}}}
+
+            <!-- <div class="input-field col s6">
               <input id="input_{{name}}" type="text" class="validate">
               <label for="input_{{name}}">{{display_name}}</label>
-            </div>
+            </div> -->
           {{/if}}
       {{/each}}
     </div>
-    <a class="btn" href="#search">Search</a>
+    <a class="btn search" href="#search">Search</a>
     <a class="btn modal-trigger" href="#fields">Edit Search Fields</a>
   </form>
   <br/>

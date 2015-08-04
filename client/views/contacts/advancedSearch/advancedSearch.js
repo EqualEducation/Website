@@ -9,5 +9,23 @@ Template.advancedSearch.events({
     Session.set("fieldsToSearch",searchIDs)
 
     return;
+  },
+  "click .search": function(e,t) {
+
   }
 });
+
+Template.registerHelper("stringToArray", function (string) {
+  var arr = [string];
+  return arr;
+})
+
+function selectedContactFields() {
+  if (Session.get("fieldsToSearch") != undefined) {
+    var contactfields = ContactFields.find( { name: { $in: Session.get("fieldsToSearch") } } ).fetch();
+    return contactfields;
+  } else {
+    var contactfields = ContactFields.find({default: true}).fetch();
+    return contactfields;
+  }
+}

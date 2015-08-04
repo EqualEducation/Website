@@ -22,7 +22,7 @@ Template.searchResult.helpers({
             rowsPerPage: 20,
             showFilter: false,
             fields: Session.get("visibleFields"),
-            filters: ['myFilter'],
+            filters: Session.get('reactiveTableFilters'),
             showNavigation: 'auto'
         };
     }
