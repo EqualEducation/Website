@@ -10,9 +10,6 @@ Template.advancedSearch.events({
 
     return;
   },
-  "click .search": function(e,t) {
-
-  }
 });
 
 Template.registerHelper("stringToArray", function (string) {

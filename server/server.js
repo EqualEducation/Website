@@ -1,10 +1,11 @@
 var contactFieldsArray =  [
-    { name : "_id", display_name: 'Source _Id', visible: false},
+    { name : "_id", display_name: 'Source_Id', visible: false, reactiveSearchFields: ['_id']},
     { name: "address", display_name: 'Address', visible: true,
-      fields: ["address","country", "province", "postal_code",	"type", "province", "postal_code"]
+      fields: ["address","country", "province", "postal_code",	"type", "province", "postal_code"],
+      reactiveSearchFields: ['address']
     },
-    { name: "birth_date", display_name: 'Date of Birth', visible: true},
-    { name: "city", display_name: 'City', visible: true, default: true},
+    { name: "birth_date", display_name: 'Date of Birth', visible: true, reactiveSearchFields: ['birth_date']},
+    { name: "city", display_name: 'City', visible: true, default: true, reactiveSearchFields: ['city']},
     { name: "contact_sub_type", display_name: 'Contact Sub-type', visible: true,
       options: [null,
               "International Friend of Equal Education",
@@ -20,45 +21,47 @@ var contactFieldsArray =  [
               "Government Official",
               "Parent",
               "International Government",
-              "Teacher"]
+              "Teacher"],
+              reactiveSearchFields:['contact_sub_type']
     },
     { name: "contact_type", display_name: 'Contact Type', visible: true, default: true,
-      options:[ "Individual", "Organization", "" ]
+      options:[ "Individual", "Organization", "" ],reactiveSearchFields:['contact_type']
+
     },
-    { name: "country", display_name: 'Country', visible: true},
-    { name: "cellphone", display_name: 'Cellphone', visible: true, default: true},
-    { name: "date_of_joining_ee", display_name: 'Date of Joining EE', visible: true},
-    { name: "deceased_date", display_name: 'Deceased Date', visible: false },
-    { name: "display_name", display_name: 'Preferred Name', visible: true},
-    { name: "do_not_email", display_name: 'Do not email', visible: true, options:[ "True", "False", "" ]},
-    { name: "do_not_mail", display_name: 'Do not mail', visible: true, options:[ "True", "False", "" ] },
-    { name: "do_not_phone", display_name: 'Do not phone', visible: true, options:[ "True", "False", "" ]},
-    { name: "do_not_sms", display_name: 'Do not sms', visible: true, options:[ "True", "False", "" ]},
-    { name: "do_not_trade", display_name: 'Do not trade', visible: true, options:[ "True", "False", "" ]},
-    { name: "email", display_name: 'Email', visible: true, default: true},
-    { name: "first_name", display_name: 'First Name', visible: true, default: true},
+    { name: "country", display_name: 'Country', visible: true, reactiveSearchFields:['country']},
+    { name: "cellphone", display_name: 'Cellphone', visible: true, default: true, reactiveSearchFields:['cellphone']},
+    { name: "date_of_joining_ee", display_name: 'Date of Joining EE', visible: true,reactiveSearchFields:['date_of_joining_ee']},
+    { name: "deceased_date", display_name: 'Deceased Date', visible: false,reactiveSearchFields:['deceased_date'] },
+    { name: "display_name", display_name: 'Preferred Name', visible: true,reactiveSearchFields:['display_name']},
+    { name: "do_not_email", display_name: 'Do not email', visible: true, options:[ "True", "False", "" ],reactiveSearchFields:['do_not_email']},
+    { name: "do_not_mail", display_name: 'Do not mail', visible: true, options:[ "True", "False", "" ],reactiveSearchFields:['do_not_mail'] },
+    { name: "do_not_phone", display_name: 'Do not phone', visible: true, options:[ "True", "False", "" ],reactiveSearchFields:['do_not_phone']},
+    { name: "do_not_sms", display_name: 'Do not sms', visible: true, options:[ "True", "False", "" ],reactiveSearchFields:['do_not_sms']},
+    { name: "do_not_trade", display_name: 'Do not trade', visible: true, options:[ "True", "False", "" ],reactiveSearchFields:['do_not_trade']},
+    { name: "email", display_name: 'Email', visible: true, default: true, reactiveSearchFields:['email']},
+    { name: "first_name", display_name: 'First Name', visible: true, default: true, reactiveSearchFields:['first_name']},
     { name: "gender", display_name: 'Gender', visible: true, default: true,
-      options:[ "Male", "Female", "" ]
+      options:[ "Male", "Female", "" ], reactiveSearchFields:['gender']
     },
-    { name: "grade", display_name: 'Grade', visible: true},
-    { name: "last_name", display_name: 'Last name', visible: true, default: true},
-    { name: "legal_name", display_name: 'Legal Name', visible: true},
+    { name: "grade", display_name: 'Grade', visible: true, reactiveSearchFields:['grade']},
+    { name: "last_name", display_name: 'Last name', visible: true, default: true, reactiveSearchFields:['last_name']},
+    { name: "legal_name", display_name: 'Legal Name', visible: true, reactiveSearchFields:['legal_name']},
     { name: "member", display_name: 'Member', visible: true,
-      options:[ "Member", "" ]
+      options:[ "Member", "" ], reactiveSearchFields:['member']
     },
     { name: "isMember", display_name: 'Is Member', visible: true,
-      options:[ "false", "true" ]
+      options:[ "false", "true" ], reactiveSearchFields:['isMember']
     },
-    { name: "middle_name", display_name: 'Middle name', visible: true, default: true},
-    { name: "nick_name", display_name: 'Nick Name', visible: true},
-    { name: "note", display_name: 'Note', visible: true},
-    { name: "organization_name", display_name: 'Organization Name', visible: true},
+    { name: "middle_name", display_name: 'Middle name', visible: true, default: true, reactiveSearchFields:['middle_name']},
+    { name: "nick_name", display_name: 'Nick Name', visible: true, reactiveSearchFields:['nick_name']},
+    { name: "note", display_name: 'Note', visible: true, reactiveSearchFields:['note']},
+    { name: "organization_name", display_name: 'Organization Name', visible: true, reactiveSearchFields:['organization_name']},
     { name: "phone", display_name: 'Phone Numbers', visible: true, default: true,
-      fields: ["type", "phone"]
+      fields: ["type", "phone"], reactiveSearchFields:['phone']
     },
-    { name: "postal_code", display_name: 'Postal Code', visible: true},
-    { name: "preferred_communication_method", display_name: 'Preferred communication method', visible: true},
-    { name: "preferred_language", display_name: 'Preferred Language', visible: true},
+    { name: "postal_code", display_name: 'Postal Code', visible: true, reactiveSearchFields:['postal_code']},
+    { name: "preferred_communication_method", display_name: 'Preferred communication method', visible: true, reactiveSearchFields:['preferred_communication_method']},
+    { name: "preferred_language", display_name: 'Preferred Language', visible: true, reactiveSearchFields:['preferred_language']},
     { name: "province", display_name: 'Province', visible: true,
       options: ["",
                 "Eastern Cape",
@@ -69,13 +72,13 @@ var contactFieldsArray =  [
                 "Northern Cape",
                 "Limpopo",
                 "Western Cape",
-                "North West"]
+                "North West"], reactiveSearchFields:['province']
     },
-    { name: "school", display_name: 'School', visible: true},
-    { name: "suburb", display_name: 'Suburb', visible: true, default: true},
-    { name: "website", display_name: 'Website URL', visible: true},
-    { name: "year_group", display_name: 'Year Group', visible: true},
-    { name: "youth_group", display_name: 'Youth Group', visible: true}];
+    { name: "school", display_name: 'School', visible: true, reactiveSearchFields:['school']},
+    { name: "suburb", display_name: 'Suburb', visible: true, default: true, reactiveSearchFields:['suburb']},
+    { name: "website", display_name: 'Website URL', visible: true, reactiveSearchFields:['website']},
+    { name: "year_group", display_name: 'Year Group', visible: true, reactiveSearchFields:['year_group']},
+    { name: "youth_group", display_name: 'Youth Group', visible: true, reactiveSearchFields:['youth_group']}];
 
     // { name: "image_URL", display_name: 'Image URL', visible: true},
     // { name: "legal_identifier", display_name: 'Legal Identifier', visible: true},

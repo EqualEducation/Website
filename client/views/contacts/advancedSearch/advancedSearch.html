@@ -4,21 +4,21 @@
     <div class="row">
       {{#each selectedContactFields}}
           {{#if options}}
-          <div class="input-field col s6">
+          <!-- <div class="input-field col s6">
             {{> advancedSearchSelect options}}
             <label>{{display_name}}</label>
-          </div>
+          </div> -->
           {{else}}
-          {{> reactiveTableFilter class=name id=_id label=display_name fields={{stringToArray name}}}}
 
-            <!-- <div class="input-field col s6">
-              <input id="input_{{name}}" type="text" class="validate">
-              <label for="input_{{name}}">{{display_name}}</label>
-            </div> -->
+            <div class="input-field col s6">
+              <!-- <input id="input_{{name}}" type="text" class="validate"> -->
+              <!-- <label for="_id">{{display_name}}</label> -->
+              {{> reactiveTableFilter class=name id=_id label=display_name fields=reactiveSearchFields}}
+
+            </div>
           {{/if}}
       {{/each}}
     </div>
-    <a class="btn search" href="#search">Search</a>
     <a class="btn modal-trigger" href="#fields">Edit Search Fields</a>
   </form>
   <br/>
